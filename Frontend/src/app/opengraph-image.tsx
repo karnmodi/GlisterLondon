@@ -12,93 +12,189 @@ export const contentType = 'image/png'
 
 // Image generation
 export default async function Image() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://glisterluxury.com'
+
+  // Fetch logo as base64 for edge runtime compatibility
+  const logoRes = await fetch(`${baseUrl}/images/business/Logo.png`)
+  const logoBuffer = await logoRes.arrayBuffer()
+  const logoUint8 = new Uint8Array(logoBuffer)
+  let binary = ''
+  const chunkSize = 8192
+  for (let i = 0; i < logoUint8.length; i += chunkSize) {
+    binary += String.fromCharCode(...logoUint8.subarray(i, i + chunkSize))
+  }
+  const logoSrc = `data:image/png;base64,${btoa(binary)}`
+
   return new ImageResponse(
     (
       <div
         style={{
-          fontSize: 60,
-          background: '#F5F5F0', // Ivory background
           width: '100%',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'flex-start',
+          justifyContent: 'center',
+          background: '#F2F0EB',
           position: 'relative',
-          border: '4px solid #1E1E1E', // Charcoal border
         }}
       >
-        {/* Top Section - Golden G Logo on Ivory Background */}
+        {/* Outer gold border */}
         <div
           style={{
-            width: '100%',
-            height: '65%',
+            position: 'absolute',
+            inset: '14px',
+            border: '1.5px solid #C9A66B',
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: '#F5F5F0', // Ivory background matching website
-            position: 'relative',
           }}
-        >
-          <div
-            style={{
-              fontSize: 280,
-              fontWeight: 700,
-              color: '#C9A66B', // Golden/brass color
-              fontFamily: 'serif',
-              textShadow: '0 0 20px rgba(201, 166, 107, 0.5)',
-              letterSpacing: '-0.05em',
-            }}
-          >
-            G
-          </div>
-        </div>
+        />
 
-        {/* Bottom Section - Charcoal Background with Text */}
+        {/* Inner subtle border */}
         <div
           style={{
-            width: '100%',
-            height: '35%',
+            position: 'absolute',
+            inset: '21px',
+            border: '0.5px solid rgba(201, 166, 107, 0.38)',
+            display: 'flex',
+          }}
+        />
+
+        {/* Corner ornament — top left */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '6px',
+            left: '6px',
+            width: '28px',
+            height: '28px',
+            borderTop: '2px solid #C9A66B',
+            borderLeft: '2px solid #C9A66B',
+            display: 'flex',
+          }}
+        />
+
+        {/* Corner ornament — top right */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '6px',
+            right: '6px',
+            width: '28px',
+            height: '28px',
+            borderTop: '2px solid #C9A66B',
+            borderRight: '2px solid #C9A66B',
+            display: 'flex',
+          }}
+        />
+
+        {/* Corner ornament — bottom left */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '6px',
+            left: '6px',
+            width: '28px',
+            height: '28px',
+            borderBottom: '2px solid #C9A66B',
+            borderLeft: '2px solid #C9A66B',
+            display: 'flex',
+          }}
+        />
+
+        {/* Corner ornament — bottom right */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '6px',
+            right: '6px',
+            width: '28px',
+            height: '28px',
+            borderBottom: '2px solid #C9A66B',
+            borderRight: '2px solid #C9A66B',
+            display: 'flex',
+          }}
+        />
+
+        {/* Main content */}
+        <div
+          style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            background: '#1E1E1E', // Charcoal background matching website dark sections
-            padding: '40px 60px',
-            gap: '16px',
+            position: 'relative',
+            zIndex: 1,
+            gap: '0px',
+            padding: '50px 80px',
           }}
         >
+          {/* Business logo */}
+          <img
+            src={logoSrc}
+            width={420}
+            height={315}
+            style={{ objectFit: 'contain' }}
+          />
+
+          {/* Gold decorative divider */}
           <div
             style={{
-              fontSize: 48,
-              fontWeight: 700,
-              color: '#F5F5F0', // Ivory text
+              display: 'flex',
+              alignItems: 'center',
+              gap: '16px',
+              marginTop: '18px',
+              marginBottom: '18px',
+            }}
+          >
+            <div
+              style={{
+                width: '180px',
+                height: '1px',
+                background: 'linear-gradient(to right, transparent, #C9A66B)',
+                display: 'flex',
+              }}
+            />
+            <div
+              style={{
+                width: '6px',
+                height: '6px',
+                background: '#C9A66B',
+                transform: 'rotate(45deg)',
+                display: 'flex',
+              }}
+            />
+            <div
+              style={{
+                width: '180px',
+                height: '1px',
+                background: 'linear-gradient(to left, transparent, #C9A66B)',
+                display: 'flex',
+              }}
+            />
+          </div>
+
+          {/* Tagline */}
+          <div
+            style={{
+              fontSize: 18,
+              color: '#3A3830',
               fontFamily: 'serif',
+              letterSpacing: '0.38em',
+              textTransform: 'uppercase',
               textAlign: 'center',
-              lineHeight: 1.2,
             }}
           >
-            Glister Luxury - The Soul of Interior
+            Premium Brass Hardware &amp; Interior Accessories
           </div>
+
+          {/* URL */}
           <div
             style={{
-              fontSize: 24,
-              color: '#F5F5F0', // Ivory text
-              fontFamily: 'sans-serif',
-              textAlign: 'center',
-              lineHeight: 1.4,
-              opacity: 0.9,
-            }}
-          >
-            Crafting the finest solid brass cabinet hardware and interior accessories since 2025. Premium hardware for discerning customers.
-          </div>
-          <div
-            style={{
-              fontSize: 20,
-              color: '#C9A66B', // Golden accent for URL
+              fontSize: 15,
+              color: '#C9A66B',
               fontFamily: 'monospace',
-              textAlign: 'center',
-              marginTop: '8px',
+              letterSpacing: '0.14em',
+              marginTop: '12px',
             }}
           >
             www.glisterluxury.com
