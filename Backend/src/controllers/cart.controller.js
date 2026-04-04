@@ -154,6 +154,7 @@ async function addToCart(req, res, next) {
 			productID,
 			selectedMaterial,
 			selectedSize,
+			selectedSizeName,
 			selectedFinishes,
 			quantity,
 			includePackaging,
@@ -181,21 +182,18 @@ async function addToCart(req, res, next) {
 			cart = new Cart({ sessionID, items: [] });
 		}
 
-		// Get size details from product if size is provided
+		// Get size details — use the resolved size option from pricing (already matched by name + sizeMM)
 		let sizeDetail = null;
-		if (selectedSize != null) {
-			const materialMatch = priceData.resolved.materialMatch;
-			const sizeOption = (materialMatch.sizeOptions || []).find(s => Number(s.sizeMM) === Number(selectedSize));
-			if (sizeOption) {
-				sizeDetail = {
-					sizeID: null, // Size is embedded in product, no separate Size model
-					name: sizeOption.name || selectedSizeName || `${selectedSize}mm`,
-					sizeMM: Number(selectedSize),
-					sizeUnit: sizeOption.sizeUnit || 'MM',
-					customUnitLabel: sizeOption.customUnitLabel || '',
-					sizeCost: breakdown.size,
-				};
-			}
+		const resolvedSizeOption = priceData.resolved.sizeOption;
+		if (resolvedSizeOption) {
+			sizeDetail = {
+				sizeID: null, // Size is embedded in product, no separate Size model
+				name: resolvedSizeOption.name,
+				sizeMM: resolvedSizeOption.sizeMM,
+				sizeUnit: resolvedSizeOption.sizeUnit || 'MM',
+				customUnitLabel: resolvedSizeOption.customUnitLabel || '',
+				sizeCost: breakdown.size,
+			};
 		}
 
 		// Helper to convert to Decimal128 - explicitly handle the conversion

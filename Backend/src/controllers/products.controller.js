@@ -216,7 +216,9 @@ async function createProduct(req, res) {
 					basePrice: parseFloat(material.basePrice) || 0,
 					sizeOptions: (material.sizeOptions || []).map(size => ({
 						name: size.name.trim(),
-						sizeMM: parseInt(size.sizeMM) || 0,
+						sizeMM: parseFloat(size.sizeMM) || 0,
+						sizeUnit: size.sizeUnit || 'MM',
+						customUnitLabel: size.customUnitLabel || '',
 						additionalCost: parseFloat(size.additionalCost) || 0,
 						isOptional: Boolean(size.isOptional)
 					}))
@@ -559,7 +561,9 @@ async function updateProduct(req, res) {
 					basePrice: parseFloat(material.basePrice) || 0,
 					sizeOptions: (material.sizeOptions || []).map(size => ({
 						name: size.name.trim(),
-						sizeMM: parseInt(size.sizeMM) || 0,
+						sizeMM: parseFloat(size.sizeMM) || 0,
+						sizeUnit: size.sizeUnit || 'MM',
+						customUnitLabel: size.customUnitLabel || '',
 						additionalCost: parseFloat(size.additionalCost) || 0,
 						isOptional: Boolean(size.isOptional)
 					}))

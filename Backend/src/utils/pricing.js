@@ -8,7 +8,7 @@ function toNumber(decimal128) {
 }
 
 async function computePriceAndValidate(payload) {
-	const { productID, selectedMaterial, selectedSize, selectedFinishes = [], quantity = 1, includePackaging = true } = payload;
+	const { productID, selectedMaterial, selectedSize, selectedSizeName, selectedFinishes = [], quantity = 1, includePackaging = true } = payload;
 
 	const product = await Product.findById(productID).lean();
 	if (!product) {
@@ -29,14 +29,19 @@ async function computePriceAndValidate(payload) {
     const discountAmount = discountPercentage ? (originalMaterialCost * (discountPercentage / 100)) : 0;
     const materialCost = originalMaterialCost - discountAmount;
 
-	// Validate size if provided
+	// Validate size if provided — match by name first (primary), then sizeMM (fallback)
 	let sizeCost = 0;
-	if (selectedSize != null) {
-		const sizeOption = (materialMatch.sizeOptions || []).find(s => Number(s.sizeMM) === Number(selectedSize));
-		if (!sizeOption) {
+	let resolvedSizeOption = null;
+	if (selectedSizeName || selectedSize != null) {
+		resolvedSizeOption = (materialMatch.sizeOptions || []).find(s => {
+			if (selectedSizeName && s.name === selectedSizeName) return true;
+			if (selectedSize != null && Number(s.sizeMM) === Number(selectedSize)) return true;
+			return false;
+		});
+		if (!resolvedSizeOption) {
 			throw Object.assign(new Error('Selected size not available for chosen material'), { status: 400 });
 		}
-		sizeCost = toNumber(sizeOption.additionalCost);
+		sizeCost = toNumber(resolvedSizeOption.additionalCost);
 	}
 
 	// Validate finishes are allowed for this product and calculate finish costs
@@ -69,7 +74,7 @@ async function computePriceAndValidate(payload) {
 		},
         unitPrice,
 		totalAmount,
-		resolved: { materialMatch },
+		resolved: { materialMatch, sizeOption: resolvedSizeOption },
 		includePackaging
 	};
 }
