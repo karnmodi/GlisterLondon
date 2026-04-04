@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '@/contexts/AuthContext'
 import { useToast } from '@/contexts/ToastContext'
 import { ordersApi } from '@/lib/api'
-import { formatCurrency, toNumber } from '@/lib/utils'
+import { formatCurrency, toNumber, formatSizeDisplay } from '@/lib/utils'
 import LuxuryNavigation from '@/components/LuxuryNavigation'
 import LuxuryFooter from '@/components/LuxuryFooter'
 import StatusBadge from '@/components/ui/StatusBadge'
@@ -215,11 +215,9 @@ export default function OrderDetailsPage() {
                           <p>Material: {item.selectedMaterial.name}</p>
                           {item.selectedSize && (
                             <p>Size: {
-                              item.selectedSize.name && item.selectedSize.sizeMM 
-                                ? `${item.selectedSize.name} ${item.selectedSize.sizeMM}mm`
-                                : item.selectedSize.sizeMM 
-                                ? `${item.selectedSize.sizeMM}mm`
-                                : item.selectedSize.name || 'Standard'
+                              item.selectedSize.name
+                                ? `${item.selectedSize.name} (${formatSizeDisplay(item.selectedSize)})`
+                                : formatSizeDisplay(item.selectedSize)
                             }</p>
                           )}
                           {item.selectedFinish && <p>Finish: {item.selectedFinish.name}</p>}
@@ -299,13 +297,9 @@ export default function OrderDetailsPage() {
                                     {breakdown.sizeCost > 0 && item.selectedSize && (
                                       <div className="flex items-center justify-between">
                                         <span className="text-ivory/70 text-xs">
-                                          Size {item.selectedSize.name && item.selectedSize.sizeMM 
-                                            ? `(${item.selectedSize.name} ${item.selectedSize.sizeMM}mm)`
-                                            : item.selectedSize.sizeMM 
-                                            ? `(${item.selectedSize.sizeMM}mm)`
-                                            : item.selectedSize.name 
-                                            ? `(${item.selectedSize.name})`
-                                            : ''}
+                                          Size {item.selectedSize.name
+                                            ? `(${item.selectedSize.name} ${formatSizeDisplay(item.selectedSize)})`
+                                            : `(${formatSizeDisplay(item.selectedSize)})`}
                                         </span>
                                         <span className="text-ivory font-medium text-xs">
                                           +{formatCurrency(breakdown.sizeCost)}

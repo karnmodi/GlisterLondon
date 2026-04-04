@@ -191,6 +191,8 @@ async function addToCart(req, res, next) {
 					sizeID: null, // Size is embedded in product, no separate Size model
 					name: sizeOption.name || selectedSizeName || `${selectedSize}mm`,
 					sizeMM: Number(selectedSize),
+					sizeUnit: sizeOption.sizeUnit || 'MM',
+					customUnitLabel: sizeOption.customUnitLabel || '',
 					sizeCost: breakdown.size,
 				};
 			}
@@ -254,6 +256,8 @@ async function addToCart(req, res, next) {
 				sizeID: sizeDetail.sizeID || null,
 				name: sizeDetail.name,
 				sizeMM: sizeDetail.sizeMM,
+				sizeUnit: sizeDetail.sizeUnit || 'MM',
+				customUnitLabel: sizeDetail.customUnitLabel || '',
 				sizeCost: toDecimal128(sizeDetail.sizeCost || 0)
 			} : null,
 			selectedFinish: finishDetail ? {
@@ -502,12 +506,19 @@ async function getCheckoutSummary(req, res, next) {
 			// Handle size display - read from nested selectedSize object
 			let sizeDisplay = 'Standard';
 			if (item.selectedSize) {
-				if (item.selectedSize.name && item.selectedSize.sizeMM) {
-					sizeDisplay = `${item.selectedSize.name} ${item.selectedSize.sizeMM}mm`;
-				} else if (item.selectedSize.sizeMM) {
-					sizeDisplay = `${item.selectedSize.sizeMM}mm`;
-				} else if (item.selectedSize.name) {
-					sizeDisplay = item.selectedSize.name;
+				const { sizeMM, sizeUnit, customUnitLabel, name } = item.selectedSize;
+				if (sizeMM != null) {
+					if (sizeUnit === 'Inch') {
+						sizeDisplay = `${sizeMM} inch`;
+					} else if (sizeUnit === 'Degree') {
+						sizeDisplay = `${sizeMM}° Degree`;
+					} else if (sizeUnit === 'Custom' && customUnitLabel) {
+						sizeDisplay = `${sizeMM} ${customUnitLabel}`;
+					} else {
+						sizeDisplay = `${sizeMM}mm`;
+					}
+				} else if (name) {
+					sizeDisplay = name;
 				}
 			}
 

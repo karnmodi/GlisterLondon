@@ -30,3 +30,27 @@ export function formatCurrency(value: any, currency: string = 'GBP'): string {
   return `£${num.toFixed(2)}`
 }
 
+/**
+ * Format a size value with its unit for display.
+ * Examples: "45mm", "8° Degree", "1.5 inch", "Custom label"
+ */
+export function formatSizeDisplay(size: {
+  sizeMM?: number
+  sizeUnit?: string
+  customUnitLabel?: string
+}): string {
+  const value = size.sizeMM ?? 0
+  const unit = size.sizeUnit ?? 'MM'
+
+  switch (unit) {
+    case 'Inch':
+      return `${value} inch`
+    case 'Degree':
+      return `${value}° Degree`
+    case 'Custom':
+      return size.customUnitLabel ? `${value} ${size.customUnitLabel}` : `${value}`
+    default:
+      return `${value}mm`
+  }
+}
+

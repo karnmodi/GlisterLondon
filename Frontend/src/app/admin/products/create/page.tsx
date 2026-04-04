@@ -35,6 +35,8 @@ export default function CreateProductPage() {
       sizeOptions: Array<{
         name: string
         sizeMM: number
+        sizeUnit: 'MM' | 'Inch' | 'Degree' | 'Custom'
+        customUnitLabel: string
         additionalCost: number
         isOptional: boolean
       }>
@@ -136,6 +138,8 @@ export default function CreateProductPage() {
             sizeOptions: material.sizeOptions.map(size => ({
               name: size.name.trim(),
               sizeMM: size.sizeMM,
+              sizeUnit: size.sizeUnit || 'MM',
+              customUnitLabel: size.customUnitLabel || '',
               additionalCost: size.additionalCost,
               isOptional: size.isOptional
             }))

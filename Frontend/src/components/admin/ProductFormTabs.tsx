@@ -28,6 +28,8 @@ export interface FormData {
     sizeOptions: Array<{
       name: string
       sizeMM: number
+      sizeUnit: 'MM' | 'Inch' | 'Degree' | 'Custom'
+      customUnitLabel: string
       additionalCost: number
       isOptional: boolean
     }>
