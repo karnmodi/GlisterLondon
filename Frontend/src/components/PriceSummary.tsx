@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { toNumber, formatCurrency } from '@/lib/utils'
+import { toNumber, formatCurrency, formatSizeDisplay } from '@/lib/utils'
 import { useSettings } from '@/contexts/SettingsContext'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import type { Product, Material, SizeOption, Finish } from '@/types'
@@ -118,7 +118,7 @@ export default function PriceSummary({
                 >
                   <span className="text-ivory/80 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-brass"></span>
-                    Size ({selectedSize.name} {selectedSize.sizeMM}mm)
+                    Size ({selectedSize.name ? `${selectedSize.name} ` : ''}{formatSizeDisplay(selectedSize)})
                   </span>
                   <span className="font-bold text-brass">
                     {toNumber(selectedSize.additionalCost) > 0 ? `+${formatCurrency(selectedSize.additionalCost)}` : formatCurrency(0)}

@@ -6,6 +6,8 @@ const SizeOptionSchema = new Schema(
 	{
 		name: { type: String, required: true },
 		sizeMM: { type: Number, required: true },
+		sizeUnit: { type: String, enum: ['MM', 'Inch', 'Degree', 'Custom'], default: 'MM' },
+		customUnitLabel: { type: String, default: '' },
 		additionalCost: { type: Schema.Types.Decimal128, default: 0 },
 		isOptional: { type: Boolean, default: true },
 	},

@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '@/contexts/AuthContext'
 import { useToast } from '@/contexts/ToastContext'
 import { ordersApi } from '@/lib/api'
-import { formatCurrency, toNumber } from '@/lib/utils'
+import { formatCurrency, toNumber, formatSizeDisplay } from '@/lib/utils'
 import type { Order } from '@/types'
 
 export default function AdminOrderDetailPage() {
@@ -441,11 +441,9 @@ export default function AdminOrderDetailPage() {
                               <div className="flex items-center gap-1.5">
                                 <span className="text-brass">▪</span>
                                 <span>Size: <span className="font-medium text-charcoal">
-                                  {item.selectedSize.name && item.selectedSize.sizeMM 
-                                    ? `${item.selectedSize.name} ${item.selectedSize.sizeMM}mm`
-                                    : item.selectedSize.sizeMM 
-                                    ? `${item.selectedSize.sizeMM}mm`
-                                    : item.selectedSize.name || 'Standard'}
+                                  {item.selectedSize.name
+                                    ? `${item.selectedSize.name} (${formatSizeDisplay(item.selectedSize)})`
+                                    : formatSizeDisplay(item.selectedSize)}
                                 </span></span>
                               </div>
                             )}
@@ -539,13 +537,9 @@ export default function AdminOrderDetailPage() {
                                 {breakdown.sizeCost > 0 && item.selectedSize && (
                                   <div className="flex items-center justify-between">
                                     <span className="text-charcoal/70 text-xs">
-                                      Size {item.selectedSize.name && item.selectedSize.sizeMM 
-                                        ? `(${item.selectedSize.name} ${item.selectedSize.sizeMM}mm)`
-                                        : item.selectedSize.sizeMM 
-                                        ? `(${item.selectedSize.sizeMM}mm)`
-                                        : item.selectedSize.name 
-                                        ? `(${item.selectedSize.name})`
-                                        : ''}
+                                      Size {item.selectedSize.name
+                                        ? `(${item.selectedSize.name} ${formatSizeDisplay(item.selectedSize)})`
+                                        : `(${formatSizeDisplay(item.selectedSize)})`}
                                     </span>
                                     <span className="text-charcoal font-medium text-xs">
                                       +{formatCurrency(breakdown.sizeCost)}

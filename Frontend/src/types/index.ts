@@ -6,9 +6,13 @@ export interface Material {
   sizeOptions?: SizeOption[]
 }
 
+export type SizeUnit = 'MM' | 'Inch' | 'Degree' | 'Custom'
+
 export interface SizeOption {
   name: string
   sizeMM: number
+  sizeUnit?: SizeUnit
+  customUnitLabel?: string
   additionalCost: number
   isOptional: boolean
 }
@@ -122,6 +126,8 @@ export interface CartItem {
     sizeID?: string | null
     name?: string
     sizeMM?: number
+    sizeUnit?: SizeUnit
+    customUnitLabel?: string
     sizeCost: number
   }
   selectedFinish?: {
@@ -377,6 +383,8 @@ export interface OrderItem {
     sizeID?: string | null
     name?: string
     sizeMM?: number
+    sizeUnit?: SizeUnit
+    customUnitLabel?: string
     sizeCost: number
   }
   selectedFinish?: {

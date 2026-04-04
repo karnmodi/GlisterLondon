@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { productsApi, categoriesApi, finishesApi } from '@/lib/api'
-import { formatCurrency } from '@/lib/utils'
+import { formatCurrency, formatSizeDisplay } from '@/lib/utils'
 import type { Product, Category, Finish } from '@/types'
 import Button from '@/components/ui/Button'
 
@@ -823,7 +823,7 @@ export default function AdminProductsPage() {
                             <div className="flex flex-wrap gap-1 mt-1">
                               {material.sizeOptions.map((size, sizeIndex) => (
                                 <span key={sizeIndex} className="text-[9px] bg-brass/10 text-brass px-1.5 py-0.5 rounded">
-                                  {size.sizeMM}mm (+{formatCurrency(size.additionalCost)})
+                                  {formatSizeDisplay(size as any)} (+{formatCurrency(size.additionalCost)})
                                 </span>
                               ))}
                             </div>

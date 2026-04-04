@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { toNumber, formatCurrency } from '@/lib/utils'
+import { toNumber, formatCurrency, formatSizeDisplay } from '@/lib/utils'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import type { SizeOption } from '@/types'
 
@@ -62,10 +62,10 @@ export default function SizeSelection({
               {size.name ? (
                 <>
                   <p className="font-semibold text-charcoal text-xs">{size.name}</p>
-                  <p className="font-bold text-charcoal text-sm">{size.sizeMM}mm</p>
+                  <p className="font-bold text-charcoal text-sm">{formatSizeDisplay(size)}</p>
                 </>
               ) : (
-                <p className="font-bold text-charcoal text-sm">{size.sizeMM}mm</p>
+                <p className="font-bold text-charcoal text-sm">{formatSizeDisplay(size)}</p>
               )}
               {toNumber(size.additionalCost) > 0 && (
                 <p className="text-xs text-brass font-semibold">+{formatCurrency(size.additionalCost)}</p>

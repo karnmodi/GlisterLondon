@@ -42,6 +42,8 @@ export default function EditProductPage() {
       sizeOptions: Array<{
         name: string
         sizeMM: number
+        sizeUnit: 'MM' | 'Inch' | 'Degree' | 'Custom'
+        customUnitLabel: string
         additionalCost: number
         isOptional: boolean
       }>
@@ -169,6 +171,8 @@ export default function EditProductPage() {
             sizeOptions: (material.sizeOptions || []).map(size => ({
               name: size.name || '',
               sizeMM: Number(size.sizeMM),
+              sizeUnit: (size as any).sizeUnit || 'MM',
+              customUnitLabel: (size as any).customUnitLabel || '',
               additionalCost: Number(size.additionalCost) || 0,
               isOptional: Boolean(size.isOptional)
             }))
@@ -286,6 +290,8 @@ export default function EditProductPage() {
             sizeOptions: material.sizeOptions.map(size => ({
               name: size.name.trim(),
               sizeMM: size.sizeMM,
+              sizeUnit: size.sizeUnit || 'MM',
+              customUnitLabel: size.customUnitLabel || '',
               additionalCost: size.additionalCost,
               isOptional: size.isOptional
             }))

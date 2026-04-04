@@ -7,9 +7,13 @@ import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import { formatCurrency } from '@/lib/utils'
 
+type SizeUnit = 'MM' | 'Inch' | 'Degree' | 'Custom'
+
 interface SizeOption {
   name: string
   sizeMM: number
+  sizeUnit: SizeUnit
+  customUnitLabel: string
   additionalCost: number
   isOptional: boolean
 }
@@ -107,6 +111,8 @@ export default function MaterialConfigSection({
     newMaterials[materialIndex].sizeOptions.push({
       name: '',
       sizeMM: 0,
+      sizeUnit: 'MM',
+      customUnitLabel: '',
       additionalCost: 0,
       isOptional: true
     })
@@ -343,7 +349,8 @@ export default function MaterialConfigSection({
                         exit={{ opacity: 0, x: 10 }}
                         className="flex flex-col sm:flex-row items-stretch sm:items-end gap-2 p-2 bg-cream/20 rounded border border-brass/10"
                       >
-                        <div className="flex-1 grid grid-cols-1 sm:grid-cols-4 gap-2">
+                        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {/* Row 1: Size Name + Size Value */}
                           <div className="w-full">
                             <label className="block text-xs font-medium text-charcoal mb-1">
                               Size Name *
@@ -364,13 +371,57 @@ export default function MaterialConfigSection({
                             </datalist>
                           </div>
                           <Input
-                            label="Size (MM)"
+                            label="Size Value"
                             type="number"
                             min="0"
+                            step="any"
                             value={sizeOption.sizeMM}
-                            onChange={(e) => updateSizeOption(materialIndex, sizeIndex, 'sizeMM', parseInt(e.target.value) || 0)}
-                            placeholder="150"
+                            onChange={(e) => updateSizeOption(materialIndex, sizeIndex, 'sizeMM', parseFloat(e.target.value) || 0)}
+                            placeholder="e.g., 8"
                           />
+                          {/* Row 2: Size Unit + Custom Label (if Custom) */}
+                          <div className="w-full">
+                            <label className="block text-xs font-medium text-charcoal mb-1">
+                              Size Unit
+                            </label>
+                            <select
+                              value={sizeOption.sizeUnit || 'MM'}
+                              onChange={(e) => updateSizeOption(materialIndex, sizeIndex, 'sizeUnit', e.target.value as SizeUnit)}
+                              className="w-full px-2 py-1.5 text-xs bg-white border border-brass/30 rounded focus:outline-none focus:ring-1 focus:ring-brass focus:border-transparent transition-all duration-300"
+                            >
+                              <option value="MM">MM</option>
+                              <option value="Inch">Inch</option>
+                              <option value="Degree">Degree</option>
+                              <option value="Custom">Custom</option>
+                            </select>
+                          </div>
+                          {(sizeOption.sizeUnit || 'MM') === 'Custom' ? (
+                            <div className="w-full">
+                              <label className="block text-xs font-medium text-charcoal mb-1">
+                                Custom Unit Label *
+                              </label>
+                              <input
+                                type="text"
+                                value={sizeOption.customUnitLabel || ''}
+                                onChange={(e) => updateSizeOption(materialIndex, sizeIndex, 'customUnitLabel', e.target.value)}
+                                placeholder="e.g., Degree, Bar, PSI"
+                                className="w-full px-2 py-1.5 text-xs bg-white border border-brass/30 rounded focus:outline-none focus:ring-1 focus:ring-brass focus:border-transparent transition-all duration-300"
+                                required
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-full">
+                              <p className="text-[10px] text-charcoal/50 mt-1">
+                                Preview: <span className="font-medium text-charcoal/70">
+                                  {sizeOption.sizeMM}
+                                  {(sizeOption.sizeUnit || 'MM') === 'MM' && 'mm'}
+                                  {(sizeOption.sizeUnit || 'MM') === 'Inch' && ' inch'}
+                                  {(sizeOption.sizeUnit || 'MM') === 'Degree' && '° Degree'}
+                                </span>
+                              </p>
+                            </div>
+                          )}
+                          {/* Row 3: Extra Cost + Optional */}
                           <Input
                             label="Extra Cost"
                             type="number"
@@ -380,7 +431,7 @@ export default function MaterialConfigSection({
                             onChange={(e) => updateSizeOption(materialIndex, sizeIndex, 'additionalCost', parseFloat(e.target.value) || 0)}
                             placeholder="0.00"
                           />
-                          <div className="flex items-center">
+                          <div className="flex items-end pb-1.5">
                             <label className="flex items-center gap-1 text-xs">
                               <input
                                 type="checkbox"

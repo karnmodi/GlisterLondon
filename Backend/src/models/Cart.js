@@ -35,9 +35,11 @@ const CartItemSchema = new mongoose.Schema(
 
         // SELECTED SIZE (Snapshot)
         selectedSize: {
-             sizeID: { type: mongoose.Schema.Types.ObjectId, ref: 'Size' }, 
+             sizeID: { type: mongoose.Schema.Types.ObjectId, ref: 'Size' },
              name: { type: String },
              sizeMM: { type: Number },
+             sizeUnit: { type: String, enum: ['MM', 'Inch', 'Degree', 'Custom'], default: 'MM' },
+             customUnitLabel: { type: String, default: '' },
              sizeCost: { type: mongoose.Schema.Types.Decimal128, default: 0 },
         },
         

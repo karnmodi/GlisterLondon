@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { useCart } from '@/contexts/CartContext'
 import { useAuth } from '@/contexts/AuthContext'
 import { useSettings } from '@/contexts/SettingsContext'
-import { toNumber, formatCurrency } from '@/lib/utils'
+import { toNumber, formatCurrency, formatSizeDisplay } from '@/lib/utils'
 import LuxuryNavigation from '@/components/LuxuryNavigation'
 import LuxuryFooter from '@/components/LuxuryFooter'
 import Button from '@/components/ui/Button'
@@ -248,11 +248,9 @@ export default function CartPage() {
                             <p className="truncate">Material: <span className="font-medium text-charcoal">{item.selectedMaterial.name}</span></p>
                             {item.selectedSize && (
                               <p className="truncate">Size: <span className="font-medium text-charcoal">
-                                {item.selectedSize.name && item.selectedSize.sizeMM 
-                                  ? `${item.selectedSize.name} ${item.selectedSize.sizeMM}mm`
-                                  : item.selectedSize.sizeMM 
-                                  ? `${item.selectedSize.sizeMM}mm`
-                                  : item.selectedSize.name || 'Standard'}
+                                {item.selectedSize.name
+                                  ? `${item.selectedSize.name} (${formatSizeDisplay(item.selectedSize)})`
+                                  : formatSizeDisplay(item.selectedSize)}
                               </span></p>
                             )}
                             {item.selectedFinish && (
@@ -350,11 +348,9 @@ export default function CartPage() {
                                     <div className="flex items-center justify-between text-charcoal/70 flex-wrap gap-2">
                                       <span className="flex items-center gap-1">
                                         <span className="w-1.5 h-1.5 rounded-full bg-brass"></span>
-                                        Size {item.selectedSize.name && item.selectedSize.sizeMM 
-                                          ? `${item.selectedSize.name} ${item.selectedSize.sizeMM}mm`
-                                          : item.selectedSize.sizeMM 
-                                          ? `${item.selectedSize.sizeMM}mm`
-                                          : item.selectedSize.name || 'Standard'}
+                                        Size {item.selectedSize.name
+                                          ? `${item.selectedSize.name} (${formatSizeDisplay(item.selectedSize)})`
+                                          : formatSizeDisplay(item.selectedSize)}
                                       </span>
                                       <span className="font-medium text-charcoal">
                                         +{formatCurrency(item.priceBreakdown.size)}
