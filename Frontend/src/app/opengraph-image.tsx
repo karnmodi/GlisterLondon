@@ -21,7 +21,7 @@ export default async function Image() {
   let binary = ''
   const chunkSize = 8192
   for (let i = 0; i < logoUint8.length; i += chunkSize) {
-    binary += String.fromCharCode(...logoUint8.subarray(i, i + chunkSize))
+    binary += String.fromCharCode(...Array.from(logoUint8.subarray(i, i + chunkSize)))
   }
   const logoSrc = `data:image/png;base64,${btoa(binary)}`
 
