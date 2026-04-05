@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '@/contexts/AuthContext'
 import { useToast } from '@/contexts/ToastContext'
 import { ordersApi } from '@/lib/api'
-import { formatCurrency, toNumber, formatSizeDisplay } from '@/lib/utils'
+import { formatCurrency, toNumber, formatSizeDisplay, getSizeDisplayLabel } from '@/lib/utils'
 import LuxuryNavigation from '@/components/LuxuryNavigation'
 import LuxuryFooter from '@/components/LuxuryFooter'
 import StatusBadge from '@/components/ui/StatusBadge'
@@ -214,11 +214,7 @@ export default function OrderDetailsPage() {
                         <div className="text-ivory/60 text-xs sm:text-sm space-y-0.5 sm:space-y-1">
                           <p>Material: {item.selectedMaterial.name}</p>
                           {item.selectedSize && (
-                            <p>Size: {
-                              item.selectedSize.name
-                                ? `${item.selectedSize.name} (${formatSizeDisplay(item.selectedSize)})`
-                                : formatSizeDisplay(item.selectedSize)
-                            }</p>
+                            <p>Size: {getSizeDisplayLabel(item.selectedSize)}</p>
                           )}
                           {item.selectedFinish && <p>Finish: {item.selectedFinish.name}</p>}
                           <p>Quantity: {item.quantity}</p>
@@ -297,9 +293,7 @@ export default function OrderDetailsPage() {
                                     {breakdown.sizeCost > 0 && item.selectedSize && (
                                       <div className="flex items-center justify-between">
                                         <span className="text-ivory/70 text-xs">
-                                          Size {item.selectedSize.name
-                                            ? `(${item.selectedSize.name} ${formatSizeDisplay(item.selectedSize)})`
-                                            : `(${formatSizeDisplay(item.selectedSize)})`}
+                                          Size ({getSizeDisplayLabel(item.selectedSize)})
                                         </span>
                                         <span className="text-ivory font-medium text-xs">
                                           +{formatCurrency(breakdown.sizeCost)}

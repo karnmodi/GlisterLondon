@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { formatCurrency, toNumber, formatSizeDisplay } from '@/lib/utils'
+import { formatCurrency, toNumber, formatSizeDisplay, getSizeDisplayLabel } from '@/lib/utils'
 import { useSettings } from '@/contexts/SettingsContext'
 import type { Order, Cart } from '@/types'
 import { motion } from 'framer-motion'
@@ -81,11 +81,7 @@ export default function OrderSummary({ data, type }: OrderSummaryProps) {
               <div className="text-ivory/60 text-xs mt-1 space-y-0.5">
                 <p>Material: {item.selectedMaterial.name}</p>
                 {item.selectedSize && (
-                  <p>Size: {
-                    item.selectedSize.name
-                      ? `${item.selectedSize.name} (${formatSizeDisplay(item.selectedSize)})`
-                      : formatSizeDisplay(item.selectedSize)
-                  }</p>
+                  <p>Size: {getSizeDisplayLabel(item.selectedSize)}</p>
                 )}
                 {item.selectedFinish && <p>Finish: {item.selectedFinish.name}</p>}
                 <p>Qty: {item.quantity}</p>

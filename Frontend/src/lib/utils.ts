@@ -54,3 +54,26 @@ export function formatSizeDisplay(size: {
   }
 }
 
+/**
+ * Smart size display for cart/order contexts.
+ * - For non-MM units (Degree, Inch, Custom): use formatSizeDisplay (e.g. "8° Degree")
+ * - For MM (including legacy orders stored before sizeUnit was added): use name if available
+ *   to avoid redundant output like "15° Degree (15mm)"
+ * - Falls back to formatSizeDisplay when no name is present
+ */
+export function getSizeDisplayLabel(size: {
+  name?: string
+  sizeMM?: number
+  sizeUnit?: string
+  customUnitLabel?: string
+}): string {
+  const unit = size.sizeUnit ?? 'MM'
+  if (unit !== 'MM') {
+    return formatSizeDisplay(size)
+  }
+  if (size.name?.trim()) {
+    return size.name.trim()
+  }
+  return formatSizeDisplay(size)
+}
+

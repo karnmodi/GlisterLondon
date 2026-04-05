@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ordersApi } from '@/lib/api'
 import { useToast } from '@/contexts/ToastContext'
-import { formatCurrency, toNumber, formatSizeDisplay } from '@/lib/utils'
+import { formatCurrency, toNumber, formatSizeDisplay, getSizeDisplayLabel } from '@/lib/utils'
 import LuxuryNavigation from '@/components/LuxuryNavigation'
 import LuxuryFooter from '@/components/LuxuryFooter'
 import type { Order, OrderItem } from '@/types'
@@ -346,11 +346,7 @@ export default function TrackGuestOrderPage() {
                                     )}
                                     {item.selectedSize && (
                                       <p className="text-ivory/70 text-xs">
-                                        <span className="font-medium">Size:</span> {
-                                          item.selectedSize.name
-                                            ? `${item.selectedSize.name} (${formatSizeDisplay(item.selectedSize)})`
-                                            : formatSizeDisplay(item.selectedSize)
-                                        }
+                                        <span className="font-medium">Size:</span> {getSizeDisplayLabel(item.selectedSize)}
                                       </p>
                                     )}
                                     <p className="text-ivory/70 text-xs">
@@ -445,9 +441,7 @@ export default function TrackGuestOrderPage() {
                                     {breakdown.sizeCost > 0 && item.selectedSize && (
                                           <div className="flex items-center justify-between">
                                             <span className="text-ivory/70 text-xs">
-                                              Size {item.selectedSize.name
-                                                ? `(${item.selectedSize.name} ${formatSizeDisplay(item.selectedSize)})`
-                                                : `(${formatSizeDisplay(item.selectedSize)})`}
+                                              Size ({getSizeDisplayLabel(item.selectedSize)})
                                             </span>
                                             <span className="text-ivory font-medium text-xs">
                                               +{formatCurrency(breakdown.sizeCost)}
