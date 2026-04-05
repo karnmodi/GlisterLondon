@@ -147,8 +147,9 @@ export default function ProductDetailPage() {
       return
     }
 
-    // Validate finish is selected
-    if (!selectedFinish) {
+    // Validate finish is selected (only required when product has finishes)
+    const hasFinishes = availableFinishes.length > 0
+    if (hasFinishes && !selectedFinish) {
       toast.warning('Please select a finish')
       return
     }
@@ -749,13 +750,14 @@ export default function ProductDetailPage() {
               <AddToCartButton
                 onAddToCart={handleAddToCart}
                 disabled={Boolean(
-                  !selectedMaterial || 
-                  !selectedFinish || 
+                  !selectedMaterial ||
+                  (availableFinishes.length > 0 && !selectedFinish) ||
                   !!cartLoading ||
                   (selectedMaterial?.sizeOptions && selectedMaterial.sizeOptions.length > 0 && selectedSize == null)
                 )}
                 loading={cartLoading}
                 selectedMaterial={selectedMaterial}
+                hasFinishes={availableFinishes.length > 0}
                 selectedFinish={selectedFinish}
                 selectedSize={selectedSize}
                 sizeOptions={selectedMaterial?.sizeOptions || []}

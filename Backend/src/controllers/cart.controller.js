@@ -143,11 +143,6 @@ async function addToCart(req, res, next) {
 			return res.status(400).json({ error: 'selectedMaterial with name is required' });
 		}
 
-		// Validate finish is required
-		if (!selectedFinish) {
-			return res.status(400).json({ error: 'selectedFinish is required' });
-		}
-
 		// Validate and compute price (convert single finish to array for validation)
 		const selectedFinishes = selectedFinish ? [selectedFinish] : [];
 		const priceData = await computePriceAndValidate({

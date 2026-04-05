@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react'
 import Image from 'next/image'
+import { formatSizeDisplay } from '@/lib/utils'
 import type { Category, MaterialMaster, Finish } from '@/types'
 
 interface FormData {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { formatCurrency, toNumber } from '@/lib/utils'
+import { formatCurrency, toNumber, formatSizeDisplay } from '@/lib/utils'
 import { useSettings } from '@/contexts/SettingsContext'
 import type { Order, Cart } from '@/types'
 import { motion } from 'framer-motion'
@@ -82,11 +82,9 @@ export default function OrderSummary({ data, type }: OrderSummaryProps) {
                 <p>Material: {item.selectedMaterial.name}</p>
                 {item.selectedSize && (
                   <p>Size: {
-                    item.selectedSize.name && item.selectedSize.sizeMM 
-                      ? `${item.selectedSize.name} ${item.selectedSize.sizeMM}mm`
-                      : item.selectedSize.sizeMM 
-                      ? `${item.selectedSize.sizeMM}mm`
-                      : item.selectedSize.name || 'Standard'
+                    item.selectedSize.name
+                      ? `${item.selectedSize.name} (${formatSizeDisplay(item.selectedSize)})`
+                      : formatSizeDisplay(item.selectedSize)
                   }</p>
                 )}
                 {item.selectedFinish && <p>Finish: {item.selectedFinish.name}</p>}
