@@ -183,7 +183,7 @@ async function sendOrderEmails(order, user) {
 			<div class="email-wrapper">
 				<div class="header">
 					<div class="logo-container">
-						<img src="${logoUrl}" alt="Glister Luxury" class="logo" />
+						<img src="${logoUrl}" alt="Britlyn" class="logo" />
 					</div>
 					<div class="header-title">NEW ORDER RECEIVED</div>
 					<div class="header-subtitle">Order #${order.orderNumber}</div>
@@ -485,7 +485,7 @@ async function sendOrderEmails(order, user) {
 			<div class="email-wrapper">
 				<div class="header">
 					<div class="logo-container">
-						<img src="${logoUrl}" alt="Glister Luxury" class="logo" />
+						<img src="${logoUrl}" alt="Britlyn" class="logo" />
 					</div>
 					<div class="header-text">The Soul of Interior</div>
 					<div class="header-title">Thank You for Your Order!</div>
@@ -493,7 +493,7 @@ async function sendOrderEmails(order, user) {
 				<div class="content">
 					<p>Dear ${order.customerInfo.name},</p>
 					
-					<p>Thank you for your order with Glister Luxury. We are delighted to serve you and will process your order shortly.</p>
+					<p>Thank you for your order with Britlyn. We are delighted to serve you and will process your order shortly.</p>
 
 					<div class="order-details">
 						<h2>Order Summary</h2>
@@ -678,7 +678,7 @@ async function sendOrderEmails(order, user) {
 
 					<p style="margin-top: 30px;">
 						Best regards,<br>
-						<strong>The Glister Luxury Team</strong><br>
+						<strong>The Britlyn Team</strong><br>
 						<em>The Soul of Interior</em>
 					</p>
 				</div>
@@ -689,7 +689,7 @@ async function sendOrderEmails(order, user) {
 						<a href="mailto:enquiries@glisterluxury.com">enquiries@glisterluxury.com</a> (All purposes) | 
 						<a href="mailto:sales@glisterluxury.com">sales@glisterluxury.com</a> (Business purposes)
 					</p>
-					<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Glister Luxury. All rights reserved.</p>
+					<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
 				</div>
 			</div>
 		</body>
@@ -730,7 +730,7 @@ async function sendOrderEmails(order, user) {
 	const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USERNAME;
 	const adminRecipients = [adminEmail, 'londonglister@gmail.com'].filter(Boolean);
 	await adminTransporter.sendMail({
-		from: `Glister Luxury <${enquiriesEmail}>`,
+		from: `Britlyn <${enquiriesEmail}>`,
 		to: adminRecipients,
 		subject: `New Order #${order.orderNumber} - ${order.customerInfo.name}`,
 		html: adminEmailHTML
@@ -738,9 +738,9 @@ async function sendOrderEmails(order, user) {
 
 	// Send customer confirmation from orders@glisterluxury.com (matches authentication)
 	await customerTransporter.sendMail({
-		from: `Glister Luxury <${ordersEmail}>`,
+		from: `Britlyn <${ordersEmail}>`,
 		to: order.customerInfo.email,
-		subject: `Order Confirmation #${order.orderNumber} - Glister Luxury`,
+		subject: `Order Confirmation #${order.orderNumber} - Britlyn`,
 		html: customerEmailHTML
 	});
 }
@@ -1849,7 +1849,7 @@ exports.addAdminMessage = async (req, res, next) => {
 					<div class="email-wrapper">
 						<div class="header">
 							<div class="logo-container">
-								<img src="${logoUrl}" alt="Glister Luxury" class="logo" />
+								<img src="${logoUrl}" alt="Britlyn" class="logo" />
 							</div>
 							<div class="header-text">The Soul of Interior</div>
 							<div class="header-title">Order Update</div>
@@ -1867,7 +1867,7 @@ exports.addAdminMessage = async (req, res, next) => {
 							</div>
 
 							<div class="message-box">
-								<h3 style="margin-top: 0; color: #D4AF37;">Message from Glister Luxury</h3>
+								<h3 style="margin-top: 0; color: #D4AF37;">Message from Britlyn</h3>
 								<p style="font-size: 16px; line-height: 1.8;">${message.replace(/\n/g, '<br>')}</p>
 								<p style="font-size: 12px; color: #666; margin-top: 15px;">
 									Sent on ${new Date().toLocaleString('en-GB', { 
@@ -1884,7 +1884,7 @@ exports.addAdminMessage = async (req, res, next) => {
 
 							<p style="margin-top: 30px;">
 								Best regards,<br>
-								<strong>The Glister Luxury Team</strong><br>
+								<strong>The Britlyn Team</strong><br>
 								<em>The Soul of Interior</em>
 							</p>
 						</div>
@@ -1895,7 +1895,7 @@ exports.addAdminMessage = async (req, res, next) => {
 								<a href="mailto:enquiries@glisterluxury.com">enquiries@glisterluxury.com</a> (All purposes) | 
 								<a href="mailto:sales@glisterluxury.com">sales@glisterluxury.com</a> (Business purposes)
 							</p>
-							<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Glister Luxury. All rights reserved.</p>
+							<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
 						</div>
 					</div>
 				</body>
@@ -1903,9 +1903,9 @@ exports.addAdminMessage = async (req, res, next) => {
 			`;
 
 			await transporter.sendMail({
-				from: `Glister Luxury <${ordersEmail}>`, // Matches authentication
+				from: `Britlyn <${ordersEmail}>`, // Matches authentication
 				to: order.customerInfo.email,
-				subject: `Order Update #${order.orderNumber} - Glister Luxury`,
+				subject: `Order Update #${order.orderNumber} - Britlyn`,
 				html: customerEmailHTML
 			});
 		} catch (emailError) {

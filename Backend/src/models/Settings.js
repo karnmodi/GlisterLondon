@@ -191,23 +191,23 @@ SettingsSchema.statics.getSettings = async function() {
 
   if (!settings) {
     // Create default settings if none exist
-    const defaultAutoReplyMessage = `Thank you for reaching out to Glister Luxury! 💛
+    const defaultAutoReplyMessage = `Thank you for reaching out to Britlyn! 💛
 
 We're thrilled to hear from you and delighted to welcome you into the Glister family. Your enquiry is important to us, and our dedicated Enquiries Team will personally get back to you within 3 business days.
 
-At Glister Luxury, every product we craft reflects timeless design, superior quality, and the elegance you deserve. From luxurious bathroom accessories to our full range of premium hardware solutions, we are committed to bringing beauty and distinction into your home.
+At Britlyn, every product we craft reflects timeless design, superior quality, and the elegance you deserve. From luxurious bathroom accessories to our full range of premium hardware solutions, we are committed to bringing beauty and distinction into your home.
 
-We can't wait to assist you and make your experience with Glister Luxury truly exceptional. Your journey with us is just beginning, and we're excited to share it with you! ✨
+We can't wait to assist you and make your experience with Britlyn truly exceptional. Your journey with us is just beginning, and we're excited to share it with you! ✨
 
 Warm regards,
 
-The Glister Luxury Enquiries Team
+The Britlyn Enquiries Team
 
 Crafted for those who value distinction.
 
 +44 7767 198433 | enquiries@glisterluxury.com
 
-https://www.glisterlondon.com/`;
+https://www.britlyn.com/`;
 
     settings = await this.create({
       deliveryTiers: [
@@ -225,7 +225,7 @@ https://www.glisterlondon.com/`;
         {
           emailAddress: 'enquiries@glisterluxury.com',
           enabled: false,
-          subject: 'Thank you for contacting Glister Luxury',
+          subject: 'Thank you for contacting Britlyn',
           message: defaultAutoReplyMessage,
           lastUpdated: new Date(),
           updatedBy: 'system'

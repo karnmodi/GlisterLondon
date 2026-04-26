@@ -1,5 +1,5 @@
-// Service Worker for Glister Luxury PWA
-const CACHE_NAME = 'glister-luxury-v1';
+// Service Worker for Britlyn PWA
+const CACHE_NAME = 'britlyn-v1';
 const RUNTIME_CACHE = 'glister-runtime-v1';
 
 // Assets to cache on install

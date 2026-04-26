@@ -33,15 +33,15 @@ const crimson = Crimson_Text({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://glisterluxury.com'),
-  title: 'Glister Luxury - The Soul of Interior',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://britlyn.com'),
+  title: 'Britlyn - The Soul of Interior',
   description: 'Crafting the finest solid brass cabinet hardware and interior accessories since 2025. Premium hardware for discerning customers.',
   manifest: '/manifest.json',
   themeColor: '#C9A66B',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Glister Luxury',
+    title: 'Britlyn',
   },
   icons: {
     icon: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Glister Luxury - The Soul of Interior',
+    title: 'Britlyn - The Soul of Interior',
     description: 'Crafting the finest solid brass cabinet hardware and interior accessories since 2025. Premium hardware for discerning customers.',
     type: 'website',
     images: [
@@ -63,20 +63,20 @@ export const metadata: Metadata = {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Glister Luxury - The Soul of Interior',
+        alt: 'Britlyn - The Soul of Interior',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Glister Luxury - The Soul of Interior',
+    title: 'Britlyn - The Soul of Interior',
     description: 'Crafting the finest solid brass cabinet hardware and interior accessories since 2025.',
     images: ['/opengraph-image'],
   },
   other: {
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
-    'apple-mobile-web-app-title': 'Glister Luxury',
+    'apple-mobile-web-app-title': 'Britlyn',
     'mobile-web-app-capable': 'yes',
   },
 }

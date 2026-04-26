@@ -9,11 +9,8 @@ const allowedOrigins = [
   process.env.FRONTEND_URL,
   process.env.FRONTEND_URL_2,
   // Custom domains
-  'https://www.glisterluxury.com',
-  'https://www.glisterlondon.com',
-  'https://glisterlondon.com',
-  'https://www.glisterlondon.co.uk',
-  'https://glisterlondon.co.uk',
+  'https://www.britlyn.com',
+  'https://britlyn.com',
   // Vercel domain (fallback)
   'https://glister-londonn.vercel.app',
   // Local development

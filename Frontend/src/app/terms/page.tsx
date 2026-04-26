@@ -13,7 +13,7 @@ export default function TermsConditionsPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-charcoal mb-3 tracking-wide">
-              Glister Luxury LIMITED – TERMS & CONDITIONS
+              Britlyn LIMITED – TERMS & CONDITIONS
             </h1>
             <div className="w-20 h-px bg-gradient-to-r from-transparent via-brass to-transparent mx-auto mb-4" />
             <p className="text-sm text-charcoal/60">
@@ -35,7 +35,7 @@ export default function TermsConditionsPage() {
                   1. PRICES
                 </h2>
                 <p className="text-sm sm:text-base leading-relaxed">
-                  All prices shown include VAT. Glister Luxury Limited ("the Company") reserves the right to modify prices and general sales conditions at any time without prior notice.
+                  All prices shown include VAT. Britlyn Limited ("the Company") reserves the right to modify prices and general sales conditions at any time without prior notice.
                 </p>
               </div>
 
@@ -100,7 +100,7 @@ export default function TermsConditionsPage() {
                 </h2>
                 <div className="space-y-3">
                   <p className="text-sm sm:text-base leading-relaxed">
-                    Most Glister Luxury products are compatible with UK specifications. Customers are advised to ensure product suitability prior to ordering to prevent installation issues.
+                    Most Britlyn products are compatible with UK specifications. Customers are advised to ensure product suitability prior to ordering to prevent installation issues.
                   </p>
                   <p className="text-sm sm:text-base leading-relaxed">
                     The Company reserves the right to make technical changes, modify, or discontinue models at any time. All product details and dimensions are approximate; therefore, pre-drilling or preparation for installation should not occur prior to delivery.
@@ -159,7 +159,7 @@ export default function TermsConditionsPage() {
                   8. RETENTION OF TITLE
                 </h2>
                 <p className="text-sm sm:text-base leading-relaxed">
-                  All goods remain the exclusive property of Glister Luxury Limited until full payment has been received by the Company.
+                  All goods remain the exclusive property of Britlyn Limited until full payment has been received by the Company.
                 </p>
               </div>
 

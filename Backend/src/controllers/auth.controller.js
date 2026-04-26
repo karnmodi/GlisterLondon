@@ -610,7 +610,7 @@ exports.forgotPassword = async (req, res, next) => {
         <div class="email-wrapper">
           <div class="header">
             <div class="logo-container">
-              <img src="${logoUrl}" alt="Glister Luxury" class="logo" />
+              <img src="${logoUrl}" alt="Britlyn" class="logo" />
             </div>
             <div class="header-text">The Soul of Interior</div>
             <div class="header-title">Password Reset Request</div>
@@ -618,7 +618,7 @@ exports.forgotPassword = async (req, res, next) => {
           <div class="content">
             <p>Dear User,</p>
             
-            <p>You have requested to reset your password for your Glister Luxury account.</p>
+            <p>You have requested to reset your password for your Britlyn account.</p>
             
             <div class="info-box">
               <p>Please click the button below to reset your password:</p>
@@ -630,7 +630,7 @@ exports.forgotPassword = async (req, res, next) => {
             
             <p style="margin-top: 30px;">
               Best regards,<br>
-              <strong>The Glister Luxury Team</strong><br>
+              <strong>The Britlyn Team</strong><br>
               <em>The Soul of Interior</em>
             </p>
           </div>
@@ -641,7 +641,7 @@ exports.forgotPassword = async (req, res, next) => {
               <a href="mailto:enquiries@glisterluxury.com">enquiries@glisterluxury.com</a> (All purposes) | 
               <a href="mailto:sales@glisterluxury.com">sales@glisterluxury.com</a> (Business purposes)
             </p>
-            <p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Glister Luxury. All rights reserved.</p>
+            <p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
           </div>
         </div>
       </body>
@@ -666,7 +666,7 @@ exports.forgotPassword = async (req, res, next) => {
       
       // Send email from noreply@glisterluxury.com (matches authentication)
       await transporter.sendMail({
-        from: `Glister Luxury <${noreplyEmail}>`,
+        from: `Britlyn <${noreplyEmail}>`,
         to: email,
         subject: 'Password Reset Request - Glister',
         html: message
