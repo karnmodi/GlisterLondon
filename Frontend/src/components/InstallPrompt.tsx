@@ -140,7 +140,7 @@ export default function InstallPrompt() {
               />
             </div>
             <div>
-              <h3 className="text-ivory font-display font-light text-lg tracking-brand uppercase">
+              <h3 className="text-ivory font-display font-semibold text-lg tracking-brand uppercase">
                 Install Britlyn
               </h3>
               <p className="text-ivory/70 text-sm">

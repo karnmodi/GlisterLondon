@@ -34,7 +34,7 @@ const crimson = Crimson_Text({
 
 const josefin = Josefin_Sans({
   subsets: ['latin'],
-  weight: ['100', '300'],
+  weight: ['100', '300', '600'],
   variable: '--font-josefin',
   display: 'swap',
 })

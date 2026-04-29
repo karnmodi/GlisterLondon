@@ -93,8 +93,8 @@ export default function MobileNavigation() {
                         />
                       </div>
                       <div>
-                        <h3 className="text-ivory font-display font-light text-sm tracking-luxury uppercase">BRITLYN</h3>
-                        <p className="text-brass text-xs font-display font-light tracking-luxury uppercase">Architectural Design</p>
+                        <h3 className="text-ivory font-display font-semibold text-sm tracking-luxury uppercase">BRITLYN</h3>
+                        <p className="text-brass text-xs font-display font-semibold tracking-luxury uppercase">Architectural Design</p>
                       </div>
                     </div>
                     
