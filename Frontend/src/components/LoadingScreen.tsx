@@ -159,7 +159,7 @@ export default function LoadingScreen() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <h2 className="text-xl sm:text-2xl font-display font-thin text-ivory tracking-brand uppercase mb-2">
+          <h2 className="text-xl sm:text-2xl font-display font-light text-ivory tracking-brand uppercase mb-2">
             BRITLYN
           </h2>
           <p className="text-sm font-display font-light text-brass tracking-luxury uppercase mb-4">Architectural Design</p>
