@@ -7,11 +7,11 @@ const { getLogoUrl } = require('../utils/emailHelpers');
 
 // Business email addresses that should not receive auto-replies
 const BUSINESS_EMAILS = [
-  'enquiries@glisterluxury.com',
-  'sales@glisterluxury.com',
-  'orders@glisterluxury.com',
-  'noreply@glisterluxury.com',
-  'admin@glisterluxury.com'
+  'sales@britlyn.com',
+  'accounts@britlyn.com',
+  'sales@britlyn.com',
+  'sales@britlyn.com',
+  'accounts@britlyn.com'
 ];
 
 /**
@@ -239,7 +239,7 @@ function formatAutoReplyHTML(message, variables, req = null) {
           <div class="logo-container">
             <img src="${logoUrl}" alt="Britlyn" class="logo" style="max-width: 120px; height: auto; display: block; margin: 0 auto;" />
           </div>
-          <div class="header-text">The Soul of Interior</div>
+          <div class="header-text">Architectural Design</div>
         </div>
         <div class="content">
           <div class="message-box">
@@ -250,8 +250,8 @@ function formatAutoReplyHTML(message, variables, req = null) {
           <p>This is an automated email. Please do not reply to this email.</p>
           <p>If you have any questions, feel free to reach out:</p>
           <p>
-            <a href="mailto:enquiries@glisterluxury.com">enquiries@glisterluxury.com</a> (All purposes) | 
-            <a href="mailto:sales@glisterluxury.com">sales@glisterluxury.com</a> (Business purposes)
+            <a href="mailto:sales@britlyn.com">sales@britlyn.com</a> (All purposes) | 
+            <a href="mailto:accounts@britlyn.com">accounts@britlyn.com</a> (Business purposes)
           </p>
           <p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
         </div>

@@ -487,7 +487,7 @@ async function sendOrderEmails(order, user) {
 					<div class="logo-container">
 						<img src="${logoUrl}" alt="Britlyn" class="logo" />
 					</div>
-					<div class="header-text">The Soul of Interior</div>
+					<div class="header-text">Architectural Design</div>
 					<div class="header-title">Thank You for Your Order!</div>
 				</div>
 				<div class="content">
@@ -679,15 +679,15 @@ async function sendOrderEmails(order, user) {
 					<p style="margin-top: 30px;">
 						Best regards,<br>
 						<strong>The Britlyn Team</strong><br>
-						<em>The Soul of Interior</em>
+						<em>Architectural Design</em>
 					</p>
 				</div>
 				<div class="footer">
 					<p>This is an automated confirmation email. Please do not reply to this email.</p>
 					<p>If you have any questions, feel free to reach out:</p>
 					<p>
-						<a href="mailto:enquiries@glisterluxury.com">enquiries@glisterluxury.com</a> (All purposes) | 
-						<a href="mailto:sales@glisterluxury.com">sales@glisterluxury.com</a> (Business purposes)
+						<a href="mailto:sales@britlyn.com">sales@britlyn.com</a> (All purposes) | 
+						<a href="mailto:accounts@britlyn.com">accounts@britlyn.com</a> (Business purposes)
 					</p>
 					<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
 				</div>
@@ -696,8 +696,8 @@ async function sendOrderEmails(order, user) {
 		</html>
 	`;
 
-	// Create transporter for admin emails - authenticate with enquiries@glisterluxury.com
-	const enquiriesEmail = process.env.EMAIL_FROM_ENQUIRIES || 'enquiries@glisterluxury.com';
+	// Create transporter for admin emails - authenticate with sales@britlyn.com
+	const enquiriesEmail = process.env.EMAIL_FROM_ENQUIRIES || 'sales@britlyn.com';
 	const adminTransporter = nodemailer.createTransport({
 		host: process.env.EMAIL_HOST || 'smtp.livemail.co.uk',
 		port: parseInt(process.env.EMAIL_PORT) || 587,
@@ -711,8 +711,8 @@ async function sendOrderEmails(order, user) {
 		}
 	});
 
-	// Create transporter for customer emails - authenticate with orders@glisterluxury.com
-	const ordersEmail = process.env.EMAIL_FROM_ORDERS || 'orders@glisterluxury.com';
+	// Create transporter for customer emails - authenticate with sales@britlyn.com
+	const ordersEmail = process.env.EMAIL_FROM_ORDERS || 'sales@britlyn.com';
 	const customerTransporter = nodemailer.createTransport({
 		host: process.env.EMAIL_HOST || 'smtp.livemail.co.uk',
 		port: parseInt(process.env.EMAIL_PORT) || 587,
@@ -726,9 +726,9 @@ async function sendOrderEmails(order, user) {
 		}
 	});
 
-	// Send admin notification from enquiries@glisterluxury.com (matches authentication)
+	// Send admin notification from sales@britlyn.com (matches authentication)
 	const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USERNAME;
-	const adminRecipients = [adminEmail, 'londonglister@gmail.com'].filter(Boolean);
+	const adminRecipients = [adminEmail, 'accounts@britlyn.com'].filter(Boolean);
 	await adminTransporter.sendMail({
 		from: `Britlyn <${enquiriesEmail}>`,
 		to: adminRecipients,
@@ -736,7 +736,7 @@ async function sendOrderEmails(order, user) {
 		html: adminEmailHTML
 	});
 
-	// Send customer confirmation from orders@glisterluxury.com (matches authentication)
+	// Send customer confirmation from sales@britlyn.com (matches authentication)
 	await customerTransporter.sendMail({
 		from: `Britlyn <${ordersEmail}>`,
 		to: order.customerInfo.email,
@@ -1673,8 +1673,8 @@ exports.addAdminMessage = async (req, res, next) => {
 
 		// Send email notification to customer
 		try {
-			// Create transporter for customer emails - authenticate with orders@glisterluxury.com
-			const ordersEmail = process.env.EMAIL_FROM_ORDERS || 'orders@glisterluxury.com';
+			// Create transporter for customer emails - authenticate with sales@britlyn.com
+			const ordersEmail = process.env.EMAIL_FROM_ORDERS || 'sales@britlyn.com';
 			const transporter = nodemailer.createTransport({
 				host: process.env.EMAIL_HOST || 'smtp.livemail.co.uk',
 				port: parseInt(process.env.EMAIL_PORT) || 587,
@@ -1851,7 +1851,7 @@ exports.addAdminMessage = async (req, res, next) => {
 							<div class="logo-container">
 								<img src="${logoUrl}" alt="Britlyn" class="logo" />
 							</div>
-							<div class="header-text">The Soul of Interior</div>
+							<div class="header-text">Architectural Design</div>
 							<div class="header-title">Order Update</div>
 						</div>
 						<div class="content">
@@ -1885,15 +1885,15 @@ exports.addAdminMessage = async (req, res, next) => {
 							<p style="margin-top: 30px;">
 								Best regards,<br>
 								<strong>The Britlyn Team</strong><br>
-								<em>The Soul of Interior</em>
+								<em>Architectural Design</em>
 							</p>
 						</div>
 						<div class="footer">
 							<p>This is an automated notification email. Please do not reply to this email.</p>
 							<p>If you have any questions, feel free to reach out:</p>
 							<p>
-								<a href="mailto:enquiries@glisterluxury.com">enquiries@glisterluxury.com</a> (All purposes) | 
-								<a href="mailto:sales@glisterluxury.com">sales@glisterluxury.com</a> (Business purposes)
+								<a href="mailto:sales@britlyn.com">sales@britlyn.com</a> (All purposes) | 
+								<a href="mailto:accounts@britlyn.com">accounts@britlyn.com</a> (Business purposes)
 							</p>
 							<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
 						</div>
