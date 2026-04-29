@@ -612,7 +612,7 @@ exports.forgotPassword = async (req, res, next) => {
             <div class="logo-container">
               <img src="${logoUrl}" alt="Britlyn" class="logo" />
             </div>
-            <div class="header-text">The Soul of Interior</div>
+            <div class="header-text">Architectural Design</div>
             <div class="header-title">Password Reset Request</div>
           </div>
           <div class="content">
@@ -631,15 +631,15 @@ exports.forgotPassword = async (req, res, next) => {
             <p style="margin-top: 30px;">
               Best regards,<br>
               <strong>The Britlyn Team</strong><br>
-              <em>The Soul of Interior</em>
+              <em>Architectural Design</em>
             </p>
           </div>
           <div class="footer">
             <p>This is an automated email. Please do not reply to this email.</p>
             <p>If you have any questions, feel free to reach out:</p>
             <p>
-              <a href="mailto:enquiries@glisterluxury.com">enquiries@glisterluxury.com</a> (All purposes) | 
-              <a href="mailto:sales@glisterluxury.com">sales@glisterluxury.com</a> (Business purposes)
+              <a href="mailto:sales@britlyn.com">sales@britlyn.com</a> (All purposes) |
+              <a href="mailto:accounts@britlyn.com">accounts@britlyn.com</a> (Business purposes)
             </p>
             <p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
           </div>
@@ -668,7 +668,7 @@ exports.forgotPassword = async (req, res, next) => {
       await transporter.sendMail({
         from: `Britlyn <${noreplyEmail}>`,
         to: email,
-        subject: 'Password Reset Request - Glister',
+        subject: 'Password Reset Request - Britlyn',
         html: message
       });
       
