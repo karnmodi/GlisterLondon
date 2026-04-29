@@ -34,8 +34,8 @@ export default function LuxuryFooter() {
                 />
               </div>
               <div>
-                <h3 className="text-xl font-display font-light text-ivory tracking-brand uppercase">BRITLYN</h3>
-                <p className="text-xs font-display font-light text-brass tracking-luxury uppercase">Architectural Design</p>
+                <h3 className="text-xl font-display font-semibold text-ivory tracking-brand uppercase">BRITLYN</h3>
+                <p className="text-xs font-display font-semibold text-brass tracking-luxury uppercase">Architectural Design</p>
               </div>
             </div>
             <p className="text-ivory/70 leading-relaxed mb-6">
