@@ -132,15 +132,15 @@ export default function InstallPrompt() {
       <div className="bg-charcoal border-2 border-brass rounded-lg shadow-2xl p-6 backdrop-blur-sm">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center space-x-3">
-            {/* <div className="w-12 h-12 relative">
+            <div className="w-12 h-12 relative">
               <img
-                src="/images/business/G.png"
+                src="/images/business/B.png"
                 alt="Britlyn"
                 className="w-full h-full object-contain"
               />
-            </div> */}
+            </div>
             <div>
-              <h3 className="text-ivory font-serif font-bold text-lg">
+              <h3 className="text-ivory font-display font-thin text-lg tracking-brand uppercase">
                 Install Britlyn
               </h3>
               <p className="text-ivory/70 text-sm">

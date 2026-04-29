@@ -12,6 +12,7 @@ const config: Config = {
         'sans': ['var(--font-inter)', 'system-ui', 'sans-serif'],
         'serif': ['var(--font-playfair)', 'Georgia', 'serif'],
         'crimson': ['var(--font-crimson)', 'Georgia', 'serif'],
+        'display': ['var(--font-josefin)', 'system-ui', 'sans-serif'],
       },
       colors: {
         charcoal: '#1E1E1E',
@@ -24,6 +25,7 @@ const config: Config = {
       letterSpacing: {
         'luxury': '0.15em',
         'wide': '0.1em',
+        'brand': '0.28em',
       },
       animation: {
         'fade-in': 'fadeIn 0.8s ease-in-out',

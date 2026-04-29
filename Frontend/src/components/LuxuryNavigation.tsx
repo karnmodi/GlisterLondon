@@ -179,19 +179,19 @@ export default function LuxuryNavigation() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            {/* <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110">
+            <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110">
               <Image
-                src="/images/business/G.png"
+                src="/images/business/B.png"
                 alt="Britlyn Logo"
                 fill
                 sizes="48px"
                 className="object-contain"
                 priority
               />
-            </div> */}
+            </div>
             <div>
-              <h1 className="text-xl font-serif font-bold text-ivory tracking-wide">BRITLYN</h1>
-              <p className="text-xs text-brass tracking-luxury">The Soul of Interior</p>
+              <h1 className="text-xl font-display font-thin text-ivory tracking-brand uppercase">BRITLYN</h1>
+              <p className="text-xs font-display font-light text-brass tracking-luxury uppercase">Architectural Design</p>
             </div>
           </Link>
           

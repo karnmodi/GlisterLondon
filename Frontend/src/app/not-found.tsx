@@ -27,15 +27,15 @@ export default function NotFound() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex justify-center mb-8"
             >
-              {/* <div className="relative w-24 h-24 sm:w-32 sm:h-32">
+              <div className="relative w-24 h-24 sm:w-32 sm:h-32">
                 <Image
-                  src="/images/business/G.png"
+                  src="/images/business/B.png"
                   alt="Britlyn"
                   fill
                   className="object-contain opacity-60"
                   priority
                 />
-              </div> */}
+              </div>
             </motion.div>
 
             {/* 404 Text */}

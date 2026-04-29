@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 // Route segment config
 export const runtime = 'edge'
-export const alt = 'Britlyn - The Soul of Interior'
+export const alt = 'Britlyn - Architectural Design'
 export const size = {
   width: 1200,
   height: 630,
@@ -15,7 +15,7 @@ export default async function Image() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://britlyn.com'
 
   // Fetch logo as base64 for edge runtime compatibility
-  const logoRes = await fetch(`${baseUrl}/images/business/Logo.png`)
+  const logoRes = await fetch(`${baseUrl}/images/business/B.png`)
   const logoBuffer = await logoRes.arrayBuffer()
   const logoUint8 = new Uint8Array(logoBuffer)
   let binary = ''
@@ -128,25 +128,13 @@ export default async function Image() {
             padding: '50px 80px',
           }}
         >
-          {/* Business logo — commented out until Britlyn logo is available */}
-          {/* <img
+          {/* Business logo */}
+          <img
             src={logoSrc}
             width={420}
             height={315}
             style={{ objectFit: 'contain' }}
-          /> */}
-          <div
-            style={{
-              fontSize: 72,
-              fontFamily: 'serif',
-              fontWeight: 'bold',
-              color: '#1E1E1E',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-            }}
-          >
-            BRITLYN
-          </div>
+          />
 
           {/* Gold decorative divider */}
           <div

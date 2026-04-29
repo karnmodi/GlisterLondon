@@ -84,17 +84,17 @@ export default function MobileNavigation() {
                   {/* Header Section */}
                   <div className="flex items-center justify-between mb-8 pb-4 border-b border-brass/20">
                     <div className="flex items-center space-x-3">
-                      {/* <div className="relative w-10 h-10 flex-shrink-0">
+                      <div className="relative w-10 h-10 flex-shrink-0">
                         <Image
-                          src="/images/business/G.png"
+                          src="/images/business/B.png"
                           alt="Britlyn"
                           fill
                           className="object-contain"
                         />
-                      </div> */}
+                      </div>
                       <div>
-                        <h3 className="text-ivory font-serif font-bold text-sm tracking-wide">BRITLYN</h3>
-                        <p className="text-brass text-xs">The Soul of Interior</p>
+                        <h3 className="text-ivory font-display font-thin text-sm tracking-luxury uppercase">BRITLYN</h3>
+                        <p className="text-brass text-xs font-display font-light tracking-luxury uppercase">Architectural Design</p>
                       </div>
                     </div>
                     

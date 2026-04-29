@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display, Crimson_Text } from 'next/font/google'
+import { Inter, Playfair_Display, Crimson_Text, Josefin_Sans } from 'next/font/google'
 import './globals.css'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { SettingsProvider } from '@/contexts/SettingsContext'
@@ -25,16 +25,23 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
-const crimson = Crimson_Text({ 
+const crimson = Crimson_Text({
   subsets: ['latin'],
   weight: ['400', '600', '700'],
   variable: '--font-crimson',
   display: 'swap',
 })
 
+const josefin = Josefin_Sans({
+  subsets: ['latin'],
+  weight: ['100', '300'],
+  variable: '--font-josefin',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://britlyn.com'),
-  title: 'Britlyn - The Soul of Interior',
+  title: 'Britlyn - Architectural Design',
   description: 'Crafting the finest solid brass cabinet hardware and interior accessories since 2025. Premium hardware for discerning customers.',
   manifest: '/manifest.json',
   themeColor: '#C9A66B',
@@ -55,7 +62,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Britlyn - The Soul of Interior',
+    title: 'Britlyn - Architectural Design',
     description: 'Crafting the finest solid brass cabinet hardware and interior accessories since 2025. Premium hardware for discerning customers.',
     type: 'website',
     images: [
@@ -63,13 +70,13 @@ export const metadata: Metadata = {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Britlyn - The Soul of Interior',
+        alt: 'Britlyn - Architectural Design',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Britlyn - The Soul of Interior',
+    title: 'Britlyn - Architectural Design',
     description: 'Crafting the finest solid brass cabinet hardware and interior accessories since 2025.',
     images: ['/opengraph-image'],
   },
@@ -87,7 +94,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${crimson.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${crimson.variable} ${josefin.variable}`}>
       <body className={`${inter.className} antialiased`}>
       <ToastProvider>
         <LoadingProvider>

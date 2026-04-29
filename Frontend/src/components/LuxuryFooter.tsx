@@ -24,18 +24,18 @@ export default function LuxuryFooter() {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6 group">
-              {/* <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110">
+              <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110">
                 <Image
-                  src="/images/business/G.png"
+                  src="/images/business/B.png"
                   alt="Britlyn Logo"
                   fill
                   sizes="48px"
                   className="object-contain"
                 />
-              </div> */}
+              </div>
               <div>
-                <h3 className="text-xl font-serif font-bold text-ivory tracking-wide">BRITLYN</h3>
-                <p className="text-xs text-brass tracking-luxury">The Soul of Interior</p>
+                <h3 className="text-xl font-display font-thin text-ivory tracking-brand uppercase">BRITLYN</h3>
+                <p className="text-xs font-display font-light text-brass tracking-luxury uppercase">Architectural Design</p>
               </div>
             </div>
             <p className="text-ivory/70 leading-relaxed mb-6">
