@@ -134,14 +134,14 @@ export default function InstallPrompt() {
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 relative">
               <img
-                src="/images/business/G.png"
-                alt="Glister Luxury"
+                src="/images/business/B.png"
+                alt="Britlyn"
                 className="w-full h-full object-contain"
               />
             </div>
             <div>
-              <h3 className="text-ivory font-serif font-bold text-lg">
-                Install Glister Luxury
+              <h3 className="text-ivory font-display font-thin text-lg tracking-brand uppercase">
+                Install Britlyn
               </h3>
               <p className="text-ivory/70 text-sm">
                 {isIOS && isSafari

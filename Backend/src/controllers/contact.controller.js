@@ -368,7 +368,7 @@ async function sendContactInquiryEmail(inquiry) {
 				<div class="email-wrapper">
 					<div class="header">
 						<div class="logo-container">
-							<img src="${logoUrl}" alt="Glister Luxury" class="logo" />
+							<img src="${logoUrl}" alt="Britlyn" class="logo" />
 						</div>
 						<div class="header-title">📧 NEW CONTACT REQUEST</div>
 						<div class="header-subtitle">Contact Inquiry Received</div>
@@ -416,8 +416,8 @@ async function sendContactInquiryEmail(inquiry) {
 						</div>
 					</div>
 					<div class="footer">
-						<p>This is an automated notification email from Glister Luxury.</p>
-						<p>&copy; ${new Date().getFullYear()} Glister Luxury. All rights reserved.</p>
+						<p>This is an automated notification email from Britlyn.</p>
+						<p>&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
 					</div>
 				</div>
 			</body>
@@ -437,7 +437,7 @@ async function sendContactInquiryEmail(inquiry) {
 		}
 		
 		await transporter.sendMail({
-			from: `Glister Luxury <${enquiriesEmail}>`,
+			from: `Britlyn <${enquiriesEmail}>`,
 			to: adminRecipients,
 			subject: `📧 New Contact Request - ${inquiry.subject} - ${inquiry.name}`,
 			html: adminEmailHTML
@@ -615,7 +615,7 @@ async function sendContactInquiryConfirmationEmail(inquiry) {
 				<div class="email-wrapper">
 					<div class="header">
 						<div class="logo-container">
-							<img src="${logoUrl}" alt="Glister Luxury" class="logo" />
+							<img src="${logoUrl}" alt="Britlyn" class="logo" />
 						</div>
 						<div class="header-text">The Soul of Interior</div>
 						<div class="header-title">Thank You for Contacting Us</div>
@@ -625,7 +625,7 @@ async function sendContactInquiryConfirmationEmail(inquiry) {
 						
 						<div class="confirmation-box">
 							<h2 style="margin-top: 0; color: #2C2C2C;">Your Request Has Been Received</h2>
-							<p>Thank you for contacting Glister Luxury. We have successfully received your inquiry and our team will review it shortly.</p>
+							<p>Thank you for contacting Britlyn. We have successfully received your inquiry and our team will review it shortly.</p>
 						</div>
 
 						<div class="inquiry-summary">
@@ -656,7 +656,7 @@ async function sendContactInquiryConfirmationEmail(inquiry) {
 
 						<p style="margin-top: 30px;">
 							Best regards,<br>
-							<strong>The Glister Luxury Team</strong><br>
+							<strong>The Britlyn Team</strong><br>
 							<em>The Soul of Interior</em>
 						</p>
 					</div>
@@ -667,7 +667,7 @@ async function sendContactInquiryConfirmationEmail(inquiry) {
 							<a href="mailto:enquiries@glisterluxury.com">enquiries@glisterluxury.com</a> (All purposes) | 
 							<a href="mailto:sales@glisterluxury.com">sales@glisterluxury.com</a> (Business purposes)
 						</p>
-						<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Glister Luxury. All rights reserved.</p>
+						<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
 					</div>
 				</div>
 			</body>
@@ -676,9 +676,9 @@ async function sendContactInquiryConfirmationEmail(inquiry) {
 
 		// Send customer confirmation from enquiries@glisterluxury.com (matches authentication)
 		await transporter.sendMail({
-			from: `Glister Luxury <${enquiriesEmail}>`,
+			from: `Britlyn <${enquiriesEmail}>`,
 			to: inquiry.email,
-			subject: `Thank You for Your Inquiry - Glister Luxury`,
+			subject: `Thank You for Your Inquiry - Britlyn`,
 			html: customerEmailHTML
 		});
 

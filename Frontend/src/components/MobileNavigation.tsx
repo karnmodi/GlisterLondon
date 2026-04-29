@@ -86,15 +86,15 @@ export default function MobileNavigation() {
                     <div className="flex items-center space-x-3">
                       <div className="relative w-10 h-10 flex-shrink-0">
                         <Image
-                          src="/images/business/G.png"
-                          alt="Glister Luxury"
+                          src="/images/business/B.png"
+                          alt="Britlyn"
                           fill
                           className="object-contain"
                         />
                       </div>
                       <div>
-                        <h3 className="text-ivory font-serif font-bold text-sm tracking-wide">GLISTER LUXURY</h3>
-                        <p className="text-brass text-xs">The Soul of Interior</p>
+                        <h3 className="text-ivory font-display font-thin text-sm tracking-luxury uppercase">BRITLYN</h3>
+                        <p className="text-brass text-xs font-display font-light tracking-luxury uppercase">Architectural Design</p>
                       </div>
                     </div>
                     

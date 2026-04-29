@@ -24,7 +24,7 @@ export default function CookiePolicyPage() {
     {
       id: 'introduction',
       title: '1. Introduction',
-      content: 'This Cookie Policy explains how Glister Luxury Limited ("we", "us", "our") uses cookies and similar tracking technologies on our website www.glisterlondon.co.uk (the "Site"). This policy should be read alongside our Privacy Policy.\n\nBy using our Site, you consent to the use of cookies in accordance with this Cookie Policy.'
+      content: 'This Cookie Policy explains how Britlyn Limited ("we", "us", "our") uses cookies and similar tracking technologies on our website www.britlyn.com (the "Site"). This policy should be read alongside our Privacy Policy.\n\nBy using our Site, you consent to the use of cookies in accordance with this Cookie Policy.'
     },
     {
       id: 'what-are-cookies',
@@ -54,7 +54,7 @@ export default function CookiePolicyPage() {
     {
       id: 'manage-cookies',
       title: '7. How to Manage Cookies',
-      content: 'You have several options to manage or disable cookies:\n\n**Browser Settings:**\n\nMost web browsers allow you to control cookies through their settings. You can:\n\n• Block all cookies\n• Block third-party cookies only\n• Delete existing cookies\n• Set your browser to notify you when cookies are set\n\nNote: Disabling essential cookies may affect your ability to use certain features of our website, such as logging in or making purchases.\n\n**LocalStorage Management:**\n\nTo clear localStorage data (including glister_session_id), you can:\n\n• Clear your browser\'s browsing data through browser settings\n• Use browser developer tools to remove specific localStorage items\n• Clear all site data for glisterlondon.co.uk\n\n**Mobile Devices:**\n\nOn mobile devices, cookie settings are typically found in your browser app settings or device settings.'
+      content: 'You have several options to manage or disable cookies:\n\n**Browser Settings:**\n\nMost web browsers allow you to control cookies through their settings. You can:\n\n• Block all cookies\n• Block third-party cookies only\n• Delete existing cookies\n• Set your browser to notify you when cookies are set\n\nNote: Disabling essential cookies may affect your ability to use certain features of our website, such as logging in or making purchases.\n\n**LocalStorage Management:**\n\nTo clear localStorage data (including glister_session_id), you can:\n\n• Clear your browser\'s browsing data through browser settings\n• Use browser developer tools to remove specific localStorage items\n• Clear all site data for britlyn.com\n\n**Mobile Devices:**\n\nOn mobile devices, cookie settings are typically found in your browser app settings or device settings.'
     },
     {
       id: 'cookie-preferences',
@@ -69,7 +69,7 @@ export default function CookiePolicyPage() {
     {
       id: 'contact',
       title: '10. Contact Us',
-      content: 'If you have any questions, concerns, or requests regarding our use of cookies, please contact us at:\n\nEmail: enquiries@glisterluxury.com\n\nAddress: Glister Luxury Limited, 16 Northfield Park, Hayes, England, UB3 4NU'
+      content: 'If you have any questions, concerns, or requests regarding our use of cookies, please contact us at:\n\nEmail: enquiries@glisterluxury.com\n\nAddress: Britlyn Limited, 16 Northfield Park, Hayes, England, UB3 4NU'
     }
   ]
 

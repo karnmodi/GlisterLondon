@@ -26,16 +26,16 @@ export default function LuxuryFooter() {
             <div className="flex items-center space-x-3 mb-6 group">
               <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110">
                 <Image
-                  src="/images/business/G.png"
-                  alt="Glister Luxury Logo"
+                  src="/images/business/B.png"
+                  alt="Britlyn Logo"
                   fill
                   sizes="48px"
                   className="object-contain"
                 />
               </div>
               <div>
-                <h3 className="text-xl font-serif font-bold text-ivory tracking-wide">GLISTER LUXURY</h3>
-                <p className="text-xs text-brass tracking-luxury">The Soul of Interior</p>
+                <h3 className="text-xl font-display font-thin text-ivory tracking-brand uppercase">BRITLYN</h3>
+                <p className="text-xs font-display font-light text-brass tracking-luxury uppercase">Architectural Design</p>
               </div>
             </div>
             <p className="text-ivory/70 leading-relaxed mb-6">
@@ -182,7 +182,7 @@ export default function LuxuryFooter() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-ivory/50 text-sm">
-            © {currentYear} Glister Luxury. All rights reserved.
+            © {currentYear} Britlyn. All rights reserved.
           </p>
           
           <div className="flex gap-6 text-sm">
@@ -212,7 +212,7 @@ export default function LuxuryFooter() {
         </div>
 
         {/* Embossed Logo Mark */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.05 }}
           transition={{ duration: 2 }}
@@ -221,12 +221,12 @@ export default function LuxuryFooter() {
           <div className="relative w-96 h-96">
             <Image
               src="/images/business/G.png"
-              alt="Glister Luxury Logo"
+              alt="Britlyn Logo"
               fill
               className="object-contain"
             />
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </footer>
   )

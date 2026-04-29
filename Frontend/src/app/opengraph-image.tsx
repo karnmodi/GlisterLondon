@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 // Route segment config
 export const runtime = 'edge'
-export const alt = 'Glister Luxury - The Soul of Interior'
+export const alt = 'Britlyn - Architectural Design'
 export const size = {
   width: 1200,
   height: 630,
@@ -12,10 +12,10 @@ export const contentType = 'image/png'
 
 // Image generation
 export default async function Image() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://glisterluxury.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://britlyn.com'
 
   // Fetch logo as base64 for edge runtime compatibility
-  const logoRes = await fetch(`${baseUrl}/images/business/Logo.png`)
+  const logoRes = await fetch(`${baseUrl}/images/business/B.png`)
   const logoBuffer = await logoRes.arrayBuffer()
   const logoUint8 = new Uint8Array(logoBuffer)
   let binary = ''
@@ -197,7 +197,7 @@ export default async function Image() {
               marginTop: '12px',
             }}
           >
-            www.glisterluxury.com
+            www.britlyn.com
           </div>
         </div>
       </div>

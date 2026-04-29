@@ -29,8 +29,8 @@ export default function NotFound() {
             >
               <div className="relative w-24 h-24 sm:w-32 sm:h-32">
                 <Image
-                  src="/images/business/G.png"
-                  alt="Glister Luxury"
+                  src="/images/business/B.png"
+                  alt="Britlyn"
                   fill
                   className="object-contain opacity-60"
                   priority
