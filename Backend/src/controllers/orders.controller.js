@@ -67,7 +67,7 @@ async function sendOrderEmails(order, user) {
 	// Admin notification email
 	// Use absolute URL for logo to ensure it displays in emails
 	const frontendUrl = process.env.FRONTEND_URL || process.env.FRONTEND_URL_2 || 'http://localhost:3000';
-	const logoUrl = `${frontendUrl}/images/business/G.png`;
+	const logoUrl = `${frontendUrl}/images/business/B.png`;
 	const adminEmailHTML = `
 		<!DOCTYPE html>
 		<html lang="en">
@@ -1709,7 +1709,7 @@ exports.addAdminMessage = async (req, res, next) => {
 
 			// Use absolute URL for logo to ensure it displays in emails
 			const frontendUrl = process.env.FRONTEND_URL || process.env.FRONTEND_URL_2 || 'http://localhost:3000';
-			const logoUrl = `${frontendUrl}/images/business/G.png`;
+			const logoUrl = `${frontendUrl}/images/business/B.png`;
 			const customerEmailHTML = `
 				<!DOCTYPE html>
 				<html lang="en">

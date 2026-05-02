@@ -31,11 +31,8 @@ export default function SettingsPage() {
 
   // Business emails
   const businessEmails = [
-    'enquiries@glisterluxury.com',
-    'sales@glisterluxury.com',
-    'orders@glisterluxury.com',
-    'noreply@glisterluxury.com',
-    'admin@glisterluxury.com'
+    'sales@britlyn.com',
+    'accounts@britlyn.com'
   ]
 
   // New tier form
@@ -79,11 +76,11 @@ export default function SettingsPage() {
         const defaultConfigs: AutoReplyConfig[] = businessEmails.map(email => ({
           emailAddress: email,
           enabled: false,
-          subject: email === 'enquiries@glisterluxury.com' ? 'Thank you for contacting Britlyn' : '',
-          message: email === 'enquiries@glisterluxury.com' 
+          subject: email === 'sales@britlyn.com' ? 'Thank you for contacting Britlyn' : '',
+          message: email === 'sales@britlyn.com'
             ? `Thank you for reaching out to Britlyn! 💛
 
-We're thrilled to hear from you and delighted to welcome you into the Glister family. Your enquiry is important to us, and our dedicated Enquiries Team will personally get back to you within 3 business days.
+We're thrilled to hear from you and delighted to welcome you into the Britlyn family. Your enquiry is important to us, and our dedicated Enquiries Team will personally get back to you within 3 business days.
 
 At Britlyn, every product we craft reflects timeless design, superior quality, and the elegance you deserve. From luxurious bathroom accessories to our full range of premium hardware solutions, we are committed to bringing beauty and distinction into your home.
 
@@ -95,9 +92,9 @@ The Britlyn Enquiries Team
 
 Crafted for those who value distinction.
 
-+44 7767 198433 | enquiries@glisterluxury.com
++44 7767 198433 | sales@britlyn.com
 
-https://www.britlyn.com/`
+https://www.britlynuk.com/`
             : ''
         }))
         setAutoReplySettings(defaultConfigs)

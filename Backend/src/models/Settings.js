@@ -193,7 +193,7 @@ SettingsSchema.statics.getSettings = async function() {
     // Create default settings if none exist
     const defaultAutoReplyMessage = `Thank you for reaching out to Britlyn! 💛
 
-We're thrilled to hear from you and delighted to welcome you into the Glister family. Your enquiry is important to us, and our dedicated Enquiries Team will personally get back to you within 3 business days.
+We're thrilled to hear from you and delighted to welcome you into the Britlyn family. Your enquiry is important to us, and our dedicated Enquiries Team will personally get back to you within 3 business days.
 
 At Britlyn, every product we craft reflects timeless design, superior quality, and the elegance you deserve. From luxurious bathroom accessories to our full range of premium hardware solutions, we are committed to bringing beauty and distinction into your home.
 
@@ -205,9 +205,9 @@ The Britlyn Enquiries Team
 
 Crafted for those who value distinction.
 
-+44 7767 198433 | enquiries@glisterluxury.com
++44 7767 198433 | sales@britlyn.com
 
-https://www.britlyn.com/`;
+https://www.britlynuk.com/`;
 
     settings = await this.create({
       deliveryTiers: [
@@ -223,7 +223,7 @@ https://www.britlyn.com/`;
       vatEnabled: true,
       autoReplySettings: [
         {
-          emailAddress: 'enquiries@glisterluxury.com',
+          emailAddress: 'sales@britlyn.com',
           enabled: false,
           subject: 'Thank you for contacting Britlyn',
           message: defaultAutoReplyMessage,
@@ -231,31 +231,7 @@ https://www.britlyn.com/`;
           updatedBy: 'system'
         },
         {
-          emailAddress: 'sales@glisterluxury.com',
-          enabled: false,
-          subject: '',
-          message: '',
-          lastUpdated: new Date(),
-          updatedBy: 'system'
-        },
-        {
-          emailAddress: 'orders@glisterluxury.com',
-          enabled: false,
-          subject: '',
-          message: '',
-          lastUpdated: new Date(),
-          updatedBy: 'system'
-        },
-        {
-          emailAddress: 'noreply@glisterluxury.com',
-          enabled: false,
-          subject: '',
-          message: '',
-          lastUpdated: new Date(),
-          updatedBy: 'system'
-        },
-        {
-          emailAddress: 'admin@glisterluxury.com',
+          emailAddress: 'accounts@britlyn.com',
           enabled: false,
           subject: '',
           message: '',

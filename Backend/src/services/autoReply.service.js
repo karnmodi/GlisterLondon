@@ -8,9 +8,6 @@ const { getLogoUrl } = require('../utils/emailHelpers');
 // Business email addresses that should not receive auto-replies
 const BUSINESS_EMAILS = [
   'sales@britlyn.com',
-  'accounts@britlyn.com',
-  'sales@britlyn.com',
-  'sales@britlyn.com',
   'accounts@britlyn.com'
 ];
 

@@ -649,8 +649,8 @@ exports.forgotPassword = async (req, res, next) => {
     `;
     
     try {
-      // Configure email transporter for FastHost SMTP - authenticate with noreply@glisterluxury.com
-      const noreplyEmail = process.env.EMAIL_FROM_NOREPLY || 'noreply@glisterluxury.com';
+      // Configure email transporter for FastHost SMTP - authenticate with sales@britlyn.com
+      const noreplyEmail = process.env.EMAIL_FROM_NOREPLY || 'sales@britlyn.com';
       const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST || 'smtp.livemail.co.uk',
         port: parseInt(process.env.EMAIL_PORT) || 587,
@@ -664,7 +664,7 @@ exports.forgotPassword = async (req, res, next) => {
         }
       });
       
-      // Send email from noreply@glisterluxury.com (matches authentication)
+      // Send email from sales@britlyn.com (matches authentication)
       await transporter.sendMail({
         from: `Britlyn <${noreplyEmail}>`,
         to: email,
