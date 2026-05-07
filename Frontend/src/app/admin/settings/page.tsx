@@ -31,8 +31,8 @@ export default function SettingsPage() {
 
   // Business emails
   const businessEmails = [
-    'sales@britlyn.com',
-    'accounts@britlyn.com'
+    'sales@britlynuk.com',
+    'accounts@britlynuk.com'
   ]
 
   // New tier form
@@ -76,8 +76,8 @@ export default function SettingsPage() {
         const defaultConfigs: AutoReplyConfig[] = businessEmails.map(email => ({
           emailAddress: email,
           enabled: false,
-          subject: email === 'sales@britlyn.com' ? 'Thank you for contacting Britlyn' : '',
-          message: email === 'sales@britlyn.com'
+          subject: email === 'sales@britlynuk.com' ? 'Thank you for contacting Britlyn' : '',
+          message: email === 'sales@britlynuk.com'
             ? `Thank you for reaching out to Britlyn! 💛
 
 We're thrilled to hear from you and delighted to welcome you into the Britlyn family. Your enquiry is important to us, and our dedicated Enquiries Team will personally get back to you within 3 business days.
@@ -92,7 +92,7 @@ The Britlyn Enquiries Team
 
 Crafted for those who value distinction.
 
-+44 7767 198433 | sales@britlyn.com
++44 7767 198433 | sales@britlynuk.com
 
 https://www.britlynuk.com/`
             : ''

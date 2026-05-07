@@ -7,8 +7,8 @@ const { getLogoUrl } = require('../utils/emailHelpers');
 
 // Business email addresses that should not receive auto-replies
 const BUSINESS_EMAILS = [
-  'sales@britlyn.com',
-  'accounts@britlyn.com'
+  'sales@britlynuk.com',
+  'accounts@britlynuk.com'
 ];
 
 /**
@@ -247,8 +247,8 @@ function formatAutoReplyHTML(message, variables, req = null) {
           <p>This is an automated email. Please do not reply to this email.</p>
           <p>If you have any questions, feel free to reach out:</p>
           <p>
-            <a href="mailto:sales@britlyn.com">sales@britlyn.com</a> (All purposes) | 
-            <a href="mailto:accounts@britlyn.com">accounts@britlyn.com</a> (Business purposes)
+            <a href="mailto:sales@britlynuk.com">sales@britlynuk.com</a> (All purposes) | 
+            <a href="mailto:accounts@britlynuk.com">accounts@britlynuk.com</a> (Business purposes)
           </p>
           <p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
         </div>

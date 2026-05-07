@@ -205,7 +205,7 @@ The Britlyn Enquiries Team
 
 Crafted for those who value distinction.
 
-+44 7767 198433 | sales@britlyn.com
++44 7767 198433 | sales@britlynuk.com
 
 https://www.britlynuk.com/`;
 
@@ -223,7 +223,7 @@ https://www.britlynuk.com/`;
       vatEnabled: true,
       autoReplySettings: [
         {
-          emailAddress: 'sales@britlyn.com',
+          emailAddress: 'sales@britlynuk.com',
           enabled: false,
           subject: 'Thank you for contacting Britlyn',
           message: defaultAutoReplyMessage,
@@ -231,7 +231,7 @@ https://www.britlynuk.com/`;
           updatedBy: 'system'
         },
         {
-          emailAddress: 'accounts@britlyn.com',
+          emailAddress: 'accounts@britlynuk.com',
           enabled: false,
           subject: '',
           message: '',

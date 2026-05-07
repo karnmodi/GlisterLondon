@@ -231,8 +231,8 @@ async function deleteContactInfo(req, res) {
  */
 async function sendContactInquiryEmail(inquiry) {
 	try {
-		// Configure email transporter for FastHost SMTP - authenticate with sales@britlyn.com
-		const enquiriesEmail = process.env.EMAIL_FROM_ENQUIRIES || 'sales@britlyn.com';
+		// Configure email transporter for FastHost SMTP - authenticate with sales@britlynuk.com
+		const enquiriesEmail = process.env.EMAIL_FROM_ENQUIRIES || 'sales@britlynuk.com';
 		const transporter = nodemailer.createTransport({
 			host: process.env.EMAIL_HOST || 'smtp.livemail.co.uk',
 			port: parseInt(process.env.EMAIL_PORT) || 587,
@@ -424,16 +424,16 @@ async function sendContactInquiryEmail(inquiry) {
 			</html>
 		`;
 
-		// Send admin notification from sales@britlyn.com (matches authentication)
-		// Route bulk_order and business_inquiry to accounts@britlyn.com
+		// Send admin notification from sales@britlynuk.com (matches authentication)
+		// Route bulk_order and business_inquiry to accounts@britlynuk.com
 		const isBusinessOrBulkOrder = inquiry.category === 'bulk_order' || inquiry.category === 'business_inquiry';
 		let adminRecipients;
 		
 		if (isBusinessOrBulkOrder) {
-			adminRecipients = ['accounts@britlyn.com'];
+			adminRecipients = ['accounts@britlynuk.com'];
 		} else {
 			const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USERNAME;
-			adminRecipients = [adminEmail, 'accounts@britlyn.com'].filter(Boolean);
+			adminRecipients = [adminEmail, 'accounts@britlynuk.com'].filter(Boolean);
 		}
 		
 		await transporter.sendMail({
@@ -455,8 +455,8 @@ async function sendContactInquiryEmail(inquiry) {
  */
 async function sendContactInquiryConfirmationEmail(inquiry) {
 	try {
-		// Configure email transporter for FastHost SMTP - authenticate with sales@britlyn.com
-		const enquiriesEmail = process.env.EMAIL_FROM_ENQUIRIES || 'sales@britlyn.com';
+		// Configure email transporter for FastHost SMTP - authenticate with sales@britlynuk.com
+		const enquiriesEmail = process.env.EMAIL_FROM_ENQUIRIES || 'sales@britlynuk.com';
 		const transporter = nodemailer.createTransport({
 			host: process.env.EMAIL_HOST || 'smtp.livemail.co.uk',
 			port: parseInt(process.env.EMAIL_PORT) || 587,
@@ -664,8 +664,8 @@ async function sendContactInquiryConfirmationEmail(inquiry) {
 						<p>This is an automated confirmation email. Please do not reply to this email.</p>
 						<p>If you have any questions, feel free to reach out:</p>
 						<p>
-							<a href="mailto:sales@britlyn.com">sales@britlyn.com</a> (All purposes) | 
-							<a href="mailto:accounts@britlyn.com">accounts@britlyn.com</a> (Business purposes)
+							<a href="mailto:sales@britlynuk.com">sales@britlynuk.com</a> (All purposes) | 
+							<a href="mailto:accounts@britlynuk.com">accounts@britlynuk.com</a> (Business purposes)
 						</p>
 						<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
 					</div>
@@ -674,7 +674,7 @@ async function sendContactInquiryConfirmationEmail(inquiry) {
 			</html>
 		`;
 
-		// Send customer confirmation from sales@britlyn.com (matches authentication)
+		// Send customer confirmation from sales@britlynuk.com (matches authentication)
 		await transporter.sendMail({
 			from: `Britlyn <${enquiriesEmail}>`,
 			to: inquiry.email,
@@ -727,7 +727,7 @@ async function submitInquiry(req, res) {
 
 		try {
 			// Try to send auto-reply first (if enabled)
-			const enquiriesEmail = process.env.EMAIL_FROM_ENQUIRIES || 'sales@britlyn.com';
+			const enquiriesEmail = process.env.EMAIL_FROM_ENQUIRIES || 'sales@britlynuk.com';
 			const autoReplySent = await autoReplyService.sendAutoReply(
 				enquiriesEmail,
 				inquiry.email,
