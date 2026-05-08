@@ -70,28 +70,30 @@ function transformMongoTypes(obj) {
  */
 function parseProductID(productID) {
 	if (!productID || typeof productID !== 'string') {
-		return { prefix: productID || '', numericPart: 0 };
+		return { prefix: productID || '', suffixLetter: '', numericPart: 0 };
 	}
 
 	const lastDashIndex = productID.lastIndexOf('-');
-	
-	// If no dash found, treat entire string as prefix
+
 	if (lastDashIndex === -1) {
-		return { prefix: productID, numericPart: 0 };
+		return { prefix: productID, suffixLetter: '', numericPart: 0 };
 	}
 
-	// Extract prefix: all parts before the last "-"
 	const prefix = productID.substring(0, lastDashIndex);
-	
-	// Extract numeric part: last part after the last "-"
-	const numericStr = productID.substring(lastDashIndex + 1);
-	const numericPart = parseInt(numericStr, 10);
-	
-	// If numeric part is not a valid number, treat as 0
-	return {
-		prefix: prefix || productID,
-		numericPart: isNaN(numericPart) ? 0 : numericPart
-	};
+	const suffix = productID.substring(lastDashIndex + 1);
+
+	// Split suffix into optional leading letters + trailing digits
+	// e.g. "A03" → letter "A", num 3 | "X1" → letter "X", num 1 | "101" → letter "", num 101
+	const match = suffix.match(/^([A-Za-z]*)(\d+)$/);
+	if (match) {
+		return {
+			prefix: prefix || productID,
+			suffixLetter: match[1].toUpperCase(),
+			numericPart: parseInt(match[2], 10)
+		};
+	}
+
+	return { prefix: prefix || productID, suffixLetter: suffix, numericPart: 0 };
 }
 
 /**
@@ -143,8 +145,15 @@ function sortProductsByCategoryAndID(products) {
 			return prefixCompare;
 		}
 
-		// 3. Compare by numeric part (numerically) - TERTIARY SORT within same prefix
-		// This ensures products with same prefix are sorted numerically (e.g., M-101, M-102, M-1001, M-1009, M-1010)
+		// 3. Compare by suffix letter (alphabetically) - TERTIARY SORT within same prefix
+		// Handles alphanumeric suffixes like "A03", "B01" where the letter denotes a sub-series
+		const suffixLetterCompare = (parsedA.suffixLetter || '').localeCompare(parsedB.suffixLetter || '');
+		if (suffixLetterCompare !== 0) {
+			return suffixLetterCompare;
+		}
+
+		// 4. Compare by numeric part (numerically) - QUATERNARY SORT within same prefix+letter
+		// e.g. VT-DH-A01, VT-DH-A02, VT-DH-A03 sort as 1, 2, 3
 		const numA = Number(parsedA.numericPart) || 0;
 		const numB = Number(parsedB.numericPart) || 0;
 		const numericCompare = numA - numB;
