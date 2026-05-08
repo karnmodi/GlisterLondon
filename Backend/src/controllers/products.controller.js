@@ -107,87 +107,45 @@ function sortProductsByCategoryAndID(products) {
 		return products;
 	}
 
-	// Create a copy to avoid mutating the original array
-	const sortedProducts = [...products];
+	// Helper: get subcategory name from populated category.subcategories array
+	const getSubcategoryName = (product) => {
+		if (!product.category?.subcategories || !product.subcategoryId) return '';
+		const sub = product.category.subcategories.find(
+			s => s._id?.toString() === product.subcategoryId?.toString()
+		);
+		return sub?.name || '';
+	};
 
-	sortedProducts.sort((a, b) => {
-		// Helper function to get category name
-		const getCategoryName = (category) => {
-			if (!category) return null;
-			if (typeof category === 'string') return null; // If it's just an ID string, we can't get the name
-			return category.name || null;
-		};
+	return [...products].sort((a, b) => {
+		const catA = a.category?.name || '';
+		const catB = b.category?.name || '';
 
-		// Helper function to check if category is "Handles"
-		const isHandlesCategory = (category) => {
-			const categoryName = getCategoryName(category);
-			return categoryName && categoryName.toLowerCase() === 'handles';
-		};
+		// 1. "Handles" category always comes first
+		const isHandlesA = catA.toLowerCase() === 'handles';
+		const isHandlesB = catB.toLowerCase() === 'handles';
+		if (isHandlesA !== isHandlesB) return isHandlesA ? -1 : 1;
 
-		// 1. Compare by category - prioritize "Handles" category first
-		const isHandlesA = isHandlesCategory(a.category);
-		const isHandlesB = isHandlesCategory(b.category);
-		
-		if (isHandlesA !== isHandlesB) {
-			// If one is Handles and the other isn't, Handles comes first
-			return isHandlesA ? -1 : 1;
-		}
+		// 2. Sort by category name alphabetically
+		const catCompare = catA.localeCompare(catB);
+		if (catCompare !== 0) return catCompare;
 
-		// If both are Handles or both are not Handles, continue with other sorting criteria
-		// Parse productIDs to get prefix and numeric part
+		// 3. Sort by subcategory name alphabetically within the same category
+		const subCompare = getSubcategoryName(a).localeCompare(getSubcategoryName(b));
+		if (subCompare !== 0) return subCompare;
+
+		// 4. Sort by product ID prefix alphabetically
 		const parsedA = parseProductID(a.productID);
 		const parsedB = parseProductID(b.productID);
-		
-		// 2. Compare by productID prefix (alphabetically) - SECONDARY SORT
-		// This ensures all products with same prefix (e.g., ARN, AUA, M, MP) are grouped together
 		const prefixCompare = parsedA.prefix.localeCompare(parsedB.prefix);
-		if (prefixCompare !== 0) {
-			return prefixCompare;
-		}
+		if (prefixCompare !== 0) return prefixCompare;
 
-		// 3. Compare by suffix letter (alphabetically) - TERTIARY SORT within same prefix
-		// Handles alphanumeric suffixes like "A03", "B01" where the letter denotes a sub-series
-		const suffixLetterCompare = (parsedA.suffixLetter || '').localeCompare(parsedB.suffixLetter || '');
-		if (suffixLetterCompare !== 0) {
-			return suffixLetterCompare;
-		}
+		// 5. Sort by suffix letter (handles "A01", "B01" style suffixes)
+		const suffixCompare = (parsedA.suffixLetter || '').localeCompare(parsedB.suffixLetter || '');
+		if (suffixCompare !== 0) return suffixCompare;
 
-		// 4. Compare by numeric part (numerically) - QUATERNARY SORT within same prefix+letter
-		// e.g. VT-DH-A01, VT-DH-A02, VT-DH-A03 sort as 1, 2, 3
-		const numA = Number(parsedA.numericPart) || 0;
-		const numB = Number(parsedB.numericPart) || 0;
-		const numericCompare = numA - numB;
-		if (numericCompare !== 0) {
-			return numericCompare;
-		}
-
-		// 4. Compare by category ID (or null) - QUATERNARY SORT
-		// Only used when prefix and numeric part are the same
-		const categoryA = a.category?._id?.toString() || a.category?.toString() || null;
-		const categoryB = b.category?._id?.toString() || b.category?.toString() || null;
-		
-		if (categoryA !== categoryB) {
-			if (categoryA === null) return 1; // null categories go last
-			if (categoryB === null) return -1;
-			return categoryA.localeCompare(categoryB);
-		}
-
-		// 5. Compare by subcategory ID (or null) - QUINARY SORT
-		// Only used when prefix, numeric part, and category are the same
-		const subcategoryA = a.subcategoryId?.toString() || null;
-		const subcategoryB = b.subcategoryId?.toString() || null;
-		
-		if (subcategoryA !== subcategoryB) {
-			if (subcategoryA === null) return 1; // null subcategories go last
-			if (subcategoryB === null) return -1;
-			return subcategoryA.localeCompare(subcategoryB);
-		}
-
-		// If everything is the same, maintain original order
-		return 0;
+		// 6. Sort by numeric part ascending
+		return (parsedA.numericPart || 0) - (parsedB.numericPart || 0);
 	});
-
-	return sortedProducts;
 }
 
 async function createProduct(req, res) {
