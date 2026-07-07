@@ -158,7 +158,7 @@ export default function AdminLayout({
               <div className="min-w-0 flex-1">
                 <Link href="/" className="group">
                   <h1 className="text-base sm:text-lg font-serif font-bold tracking-wide group-hover:text-brass transition-colors truncate">
-                    GLISTER ADMIN
+                    BRITLYN ADMIN
                   </h1>
                 </Link>
                 <p className="text-[10px] sm:text-xs text-brass/80 tracking-wide hidden sm:block">Product Management System</p>

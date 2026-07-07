@@ -28,15 +28,15 @@ function getLogoUrl(req = null) {
   
   // Final fallback - use localhost only in development
   if (!frontendUrl) {
-    frontendUrl = process.env.NODE_ENV === 'production' 
-      ? 'https://glisterluxury.co.uk' // Production fallback
+    frontendUrl = process.env.NODE_ENV === 'production'
+      ? 'https://www.britlynuk.com' // Production fallback
       : 'http://localhost:3000'; // Development fallback
   }
   
   // Ensure URL is absolute and doesn't end with slash
   frontendUrl = frontendUrl.replace(/\/$/, '');
   
-  return `${frontendUrl}/images/business/G.png`;
+  return `${frontendUrl}/images/business/B.png`;
 }
 
 module.exports = {

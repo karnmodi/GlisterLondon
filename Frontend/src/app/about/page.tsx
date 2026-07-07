@@ -404,7 +404,7 @@ export default function AboutPage() {
                 transition={{ duration: 1, delay: 0.4 }}
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-bold text-ivory leading-tight"
               >
-                {['About', 'Glister', 'Luxury'].map((word, wordIdx) => (
+                {['About', 'Britlyn'].map((word, wordIdx) => (
                   <motion.span
                     key={wordIdx}
                     className="inline-block mr-3"
@@ -1111,7 +1111,7 @@ export default function AboutPage() {
                 Where Design Meets Emotion
               </h2>
               <p className="text-ivory/80 text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
-                Welcome to The Glister Journal, where design meets emotion and craftsmanship tells its story.
+                Welcome to The Britlyn Journal, where design meets emotion and craftsmanship tells its story.
               </p>
             </motion.div>
 

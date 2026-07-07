@@ -67,7 +67,7 @@ async function sendOrderEmails(order, user) {
 	// Admin notification email
 	// Use absolute URL for logo to ensure it displays in emails
 	const frontendUrl = process.env.FRONTEND_URL || process.env.FRONTEND_URL_2 || 'http://localhost:3000';
-	const logoUrl = `${frontendUrl}/images/business/G.png`;
+	const logoUrl = `${frontendUrl}/images/business/B.png`;
 	const adminEmailHTML = `
 		<!DOCTYPE html>
 		<html lang="en">
@@ -686,8 +686,8 @@ async function sendOrderEmails(order, user) {
 					<p>This is an automated confirmation email. Please do not reply to this email.</p>
 					<p>If you have any questions, feel free to reach out:</p>
 					<p>
-						<a href="mailto:sales@britlyn.com">sales@britlyn.com</a> (All purposes) | 
-						<a href="mailto:accounts@britlyn.com">accounts@britlyn.com</a> (Business purposes)
+						<a href="mailto:sales@britlynuk.com">sales@britlynuk.com</a> (All purposes) | 
+						<a href="mailto:accounts@britlynuk.com">accounts@britlynuk.com</a> (Business purposes)
 					</p>
 					<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
 				</div>
@@ -696,8 +696,8 @@ async function sendOrderEmails(order, user) {
 		</html>
 	`;
 
-	// Create transporter for admin emails - authenticate with sales@britlyn.com
-	const enquiriesEmail = process.env.EMAIL_FROM_ENQUIRIES || 'sales@britlyn.com';
+	// Create transporter for admin emails - authenticate with sales@britlynuk.com
+	const enquiriesEmail = process.env.EMAIL_FROM_ENQUIRIES || 'sales@britlynuk.com';
 	const adminTransporter = nodemailer.createTransport({
 		host: process.env.EMAIL_HOST || 'smtp.livemail.co.uk',
 		port: parseInt(process.env.EMAIL_PORT) || 587,
@@ -711,8 +711,8 @@ async function sendOrderEmails(order, user) {
 		}
 	});
 
-	// Create transporter for customer emails - authenticate with sales@britlyn.com
-	const ordersEmail = process.env.EMAIL_FROM_ORDERS || 'sales@britlyn.com';
+	// Create transporter for customer emails - authenticate with sales@britlynuk.com
+	const ordersEmail = process.env.EMAIL_FROM_ORDERS || 'sales@britlynuk.com';
 	const customerTransporter = nodemailer.createTransport({
 		host: process.env.EMAIL_HOST || 'smtp.livemail.co.uk',
 		port: parseInt(process.env.EMAIL_PORT) || 587,
@@ -726,9 +726,9 @@ async function sendOrderEmails(order, user) {
 		}
 	});
 
-	// Send admin notification from sales@britlyn.com (matches authentication)
+	// Send admin notification from sales@britlynuk.com (matches authentication)
 	const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USERNAME;
-	const adminRecipients = [adminEmail, 'accounts@britlyn.com'].filter(Boolean);
+	const adminRecipients = [adminEmail, 'accounts@britlynuk.com'].filter(Boolean);
 	await adminTransporter.sendMail({
 		from: `Britlyn <${enquiriesEmail}>`,
 		to: adminRecipients,
@@ -736,7 +736,7 @@ async function sendOrderEmails(order, user) {
 		html: adminEmailHTML
 	});
 
-	// Send customer confirmation from sales@britlyn.com (matches authentication)
+	// Send customer confirmation from sales@britlynuk.com (matches authentication)
 	await customerTransporter.sendMail({
 		from: `Britlyn <${ordersEmail}>`,
 		to: order.customerInfo.email,
@@ -1673,8 +1673,8 @@ exports.addAdminMessage = async (req, res, next) => {
 
 		// Send email notification to customer
 		try {
-			// Create transporter for customer emails - authenticate with sales@britlyn.com
-			const ordersEmail = process.env.EMAIL_FROM_ORDERS || 'sales@britlyn.com';
+			// Create transporter for customer emails - authenticate with sales@britlynuk.com
+			const ordersEmail = process.env.EMAIL_FROM_ORDERS || 'sales@britlynuk.com';
 			const transporter = nodemailer.createTransport({
 				host: process.env.EMAIL_HOST || 'smtp.livemail.co.uk',
 				port: parseInt(process.env.EMAIL_PORT) || 587,
@@ -1709,7 +1709,7 @@ exports.addAdminMessage = async (req, res, next) => {
 
 			// Use absolute URL for logo to ensure it displays in emails
 			const frontendUrl = process.env.FRONTEND_URL || process.env.FRONTEND_URL_2 || 'http://localhost:3000';
-			const logoUrl = `${frontendUrl}/images/business/G.png`;
+			const logoUrl = `${frontendUrl}/images/business/B.png`;
 			const customerEmailHTML = `
 				<!DOCTYPE html>
 				<html lang="en">
@@ -1892,8 +1892,8 @@ exports.addAdminMessage = async (req, res, next) => {
 							<p>This is an automated notification email. Please do not reply to this email.</p>
 							<p>If you have any questions, feel free to reach out:</p>
 							<p>
-								<a href="mailto:sales@britlyn.com">sales@britlyn.com</a> (All purposes) | 
-								<a href="mailto:accounts@britlyn.com">accounts@britlyn.com</a> (Business purposes)
+								<a href="mailto:sales@britlynuk.com">sales@britlynuk.com</a> (All purposes) | 
+								<a href="mailto:accounts@britlynuk.com">accounts@britlynuk.com</a> (Business purposes)
 							</p>
 							<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
 						</div>
