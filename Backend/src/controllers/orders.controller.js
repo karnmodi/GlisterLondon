@@ -6,7 +6,7 @@ const { getLogoUrl } = require('../utils/emailHelpers');
 
 /**
  * Generate unique order number using timestamp and random suffix
- * Format: GL{YYYY}{MM}{DD}{HHMMSS}{random4digits}
+ * Format: BU{YYYY}{MM}{DD}{HHMMSS}{random4digits}
  * @returns {string} Unique order number
  */
 function generateOrderNumber() {
@@ -18,7 +18,7 @@ function generateOrderNumber() {
 	const minutes = String(now.getMinutes()).padStart(2, '0');
 	const seconds = String(now.getSeconds()).padStart(2, '0');
 	const random = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
-	return `GL${year}${month}${day}${hours}${minutes}${seconds}${random}`;
+	return `BU${year}${month}${day}${hours}${minutes}${seconds}${random}`;
 }
 
 /**
@@ -940,20 +940,16 @@ exports.createGuestOrder = async (req, res, next) => {
 		cart.offerID = undefined;
 		await cart.save();
 
-		// Send email notifications in background (non-blocking)
-		setTimeout(async () => {
-			try {
-				// Re-fetch order to ensure we have the latest data
-				const orderForEmail = await Order.findById(order._id);
-				if (orderForEmail) {
-					await sendOrderEmails(orderForEmail, null); // Pass null for user since it's a guest order
-					console.log('[Create Guest Order] Order confirmation emails sent');
-				}
-			} catch (emailError) {
-				console.error('[Create Guest Order] Email sending failed:', emailError);
-				// Don't fail the order if email fails
-			}
-		}, 0);
+		// Send email notifications. Must be awaited (not deferred via setTimeout) because
+		// this runs as a Vercel serverless function - the container can be frozen the
+		// instant the HTTP response is sent, killing any work still pending afterward.
+		try {
+			await sendOrderEmails(order, null); // Pass null for user since it's a guest order
+			console.log('[Create Guest Order] Order confirmation emails sent');
+		} catch (emailError) {
+			console.error('[Create Guest Order] Email sending failed:', emailError);
+			// Don't fail the order if email fails
+		}
 
 		// Return order without unnecessary populate for faster response
 		res.status(201).json({
@@ -1240,20 +1236,16 @@ exports.createOrder = async (req, res, next) => {
 		cart.offerID = undefined;
 		await cart.save();
 
-		// Send email notifications in background (non-blocking)
-		setTimeout(async () => {
-			try {
-				// Re-fetch order to ensure we have the latest data
-				const orderForEmail = await Order.findById(order._id);
-				if (orderForEmail) {
-					await sendOrderEmails(orderForEmail, user);
-					console.log('[Create Order] Order confirmation emails sent');
-				}
-			} catch (emailError) {
-				console.error('[Create Order] Email sending failed:', emailError);
-				// Don't fail the order if email fails
-			}
-		}, 0);
+		// Send email notifications. Must be awaited (not deferred via setTimeout) because
+		// this runs as a Vercel serverless function - the container can be frozen the
+		// instant the HTTP response is sent, killing any work still pending afterward.
+		try {
+			await sendOrderEmails(order, user);
+			console.log('[Create Order] Order confirmation emails sent');
+		} catch (emailError) {
+			console.error('[Create Order] Email sending failed:', emailError);
+			// Don't fail the order if email fails
+		}
 
 		// Return order without unnecessary populate for faster response
 		res.status(201).json({
