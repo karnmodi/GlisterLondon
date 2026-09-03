@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display, Crimson_Text, Josefin_Sans } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { SettingsProvider } from '@/contexts/SettingsContext'
@@ -108,6 +110,8 @@ export default function RootLayout({
                       <PWASetup />
                       {children}
                       <WhatsAppFloatingButton />
+                      <Analytics />
+                      <SpeedInsights />
                     </WishlistProvider>
                   </CartProvider>
                 </CollectionsProvider>
