@@ -745,6 +745,203 @@ async function sendOrderEmails(order, user) {
 	});
 }
 
+const ORDER_STATUS_LABELS = {
+	pending: 'Pending',
+	confirmed: 'Confirmed',
+	processing: 'Processing',
+	shipped: 'Shipped',
+	delivered: 'Delivered',
+	refund_requested: 'Refund Requested',
+	refund_processing: 'Refund Processing',
+	refund_completed: 'Refund Completed',
+	cancelled: 'Cancelled'
+};
+
+/**
+ * Send an email to the customer when an admin changes their order status
+ * @param {Object} order - The order document (already saved with the new status)
+ * @param {string|undefined} note - Optional admin note attached to the status change
+ */
+async function sendOrderStatusEmail(order, note) {
+	const statusLabel = ORDER_STATUS_LABELS[order.status] || order.status;
+	const frontendUrl = process.env.FRONTEND_URL || process.env.FRONTEND_URL_2 || 'http://localhost:3000';
+	const logoUrl = `${frontendUrl}/images/business/B.png`;
+
+	const trackingHTML = (order.status === 'shipped' && (order.trackingNumber || order.trackingURL)) ? `
+		<div class="order-details">
+			<h2>Tracking Information</h2>
+			${order.trackingNumber ? `<p><strong>Tracking Number:</strong> ${order.trackingNumber}</p>` : ''}
+			${order.trackingURL ? `<p><a href="${order.trackingURL}" class="button" style="display:inline-block;margin-top:10px;">Track Your Shipment</a></p>` : ''}
+		</div>
+	` : '';
+
+	const noteHTML = note ? `
+		<div class="message-box">
+			<h3 style="margin-top: 0; color: #D4AF37;">Message from Britlyn</h3>
+			<p style="font-size: 16px; line-height: 1.8;">${note.replace(/\n/g, '<br>')}</p>
+		</div>
+	` : '';
+
+	const emailHTML = `
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<style>
+				* { margin: 0; padding: 0; box-sizing: border-box; }
+				body {
+					font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+					line-height: 1.6;
+					color: #333333;
+					background-color: #f5f5f5;
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
+				}
+				.email-wrapper { max-width: 600px; margin: 0 auto; background-color: #ffffff; }
+				.header {
+					background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+					padding: 40px 20px;
+					text-align: center;
+					border-top-left-radius: 8px;
+					border-top-right-radius: 8px;
+				}
+				.logo-container { margin-bottom: 20px; }
+				.logo { max-width: 120px; height: auto; display: block; margin: 0 auto; }
+				.header-text { color: #D4AF37; font-size: 18px; font-weight: 300; letter-spacing: 2px; margin-top: 15px; }
+				.header-title { color: #ffffff; font-size: 20px; font-weight: 400; margin-top: 20px; }
+				.content { background-color: #ffffff; padding: 30px 20px; }
+				.content p { margin: 15px 0; line-height: 1.8; color: #333333; }
+				.message-box {
+					background-color: #ffffff;
+					border-left: 4px solid #D4AF37;
+					padding: 20px;
+					margin: 20px 0;
+					border-radius: 4px;
+					box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+				}
+				.order-details {
+					background-color: #ffffff;
+					padding: 20px;
+					margin: 20px 0;
+					border-radius: 8px;
+					border: 1px solid #e5e5e5;
+					box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+				}
+				.order-details h2 {
+					color: #2C2C2C;
+					font-size: 18px;
+					margin-bottom: 15px;
+					padding-bottom: 10px;
+					border-bottom: 2px solid #D4AF37;
+				}
+				.order-details p { margin: 8px 0; line-height: 1.8; }
+				.status-badge {
+					display: inline-block;
+					padding: 8px 16px;
+					border-radius: 4px;
+					background-color: #D4AF37;
+					color: #2C2C2C;
+					font-weight: bold;
+					font-size: 14px;
+				}
+				.button {
+					padding: 12px 24px;
+					background-color: #2C2C2C;
+					color: #D4AF37;
+					text-decoration: none;
+					border-radius: 5px;
+					font-weight: bold;
+					font-size: 14px;
+				}
+				.footer {
+					text-align: center;
+					padding: 30px 20px;
+					color: #666666;
+					font-size: 13px;
+					background-color: #f9f9f9;
+					border-bottom-left-radius: 8px;
+					border-bottom-right-radius: 8px;
+				}
+				.footer p { margin: 8px 0; line-height: 1.6; }
+				.footer a { color: #2C2C2C; text-decoration: none; font-weight: 500; }
+				.footer a:hover { text-decoration: underline; }
+				@media only screen and (max-width: 600px) {
+					.email-wrapper { width: 100% !important; }
+					.header { padding: 30px 15px; }
+					.content { padding: 20px 15px; }
+					.order-details { padding: 15px; }
+					.footer { padding: 20px 15px; }
+				}
+			</style>
+		</head>
+		<body>
+			<div class="email-wrapper">
+				<div class="header">
+					<div class="logo-container">
+						<img src="${logoUrl}" alt="Britlyn" class="logo" />
+					</div>
+					<div class="header-text">Architectural Design</div>
+					<div class="header-title">Order Status Update</div>
+				</div>
+				<div class="content">
+					<p>Dear ${order.customerInfo.name},</p>
+
+					<p>The status of your order has been updated.</p>
+
+					<div class="order-details">
+						<h2>Order Information</h2>
+						<p><strong>Order Number:</strong> ${order.orderNumber}</p>
+						<p><strong>New Status:</strong> <span class="status-badge">${statusLabel}</span></p>
+					</div>
+
+					${trackingHTML}
+					${noteHTML}
+
+					<p>If you have any questions about your order, please don't hesitate to contact us.</p>
+
+					<p style="margin-top: 30px;">
+						Best regards,<br>
+						<strong>The Britlyn Team</strong><br>
+						<em>Architectural Design</em>
+					</p>
+				</div>
+				<div class="footer">
+					<p>This is an automated notification email. Please do not reply to this email.</p>
+					<p>If you have any questions, feel free to reach out:</p>
+					<p>
+						<a href="mailto:sales@britlynuk.com">sales@britlynuk.com</a> (All purposes) |
+						<a href="mailto:accounts@britlynuk.com">accounts@britlynuk.com</a> (Business purposes)
+					</p>
+					<p style="margin-top: 15px;">&copy; ${new Date().getFullYear()} Britlyn. All rights reserved.</p>
+				</div>
+			</div>
+		</body>
+		</html>
+	`;
+
+	const ordersEmail = process.env.EMAIL_FROM_ORDERS || 'sales@britlynuk.com';
+	const transporter = nodemailer.createTransport({
+		host: process.env.EMAIL_HOST || 'smtp.livemail.co.uk',
+		port: parseInt(process.env.EMAIL_PORT) || 587,
+		secure: process.env.EMAIL_SECURE === 'true',
+		auth: {
+			user: ordersEmail,
+			pass: process.env.EMAIL_PASSWORD
+		},
+		tls: {
+			rejectUnauthorized: false
+		}
+	});
+
+	await transporter.sendMail({
+		from: `Britlyn <${ordersEmail}>`,
+		to: order.customerInfo.email,
+		subject: `Order Status Update #${order.orderNumber} - ${statusLabel} - Britlyn`,
+		html: emailHTML
+	});
+}
+
 /**
  * Create a new order from cart for guest users (no authentication required)
  * POST /api/orders/guest
@@ -1492,6 +1689,8 @@ exports.updateOrderStatus = async (req, res, next) => {
 			});
 		}
 
+	const previousStatus = order.status;
+
 	// Store the note temporarily for the pre-save hook to access
 	order._statusNote = note;
 	order._statusUpdatedBy = userId;
@@ -1506,6 +1705,20 @@ exports.updateOrderStatus = async (req, res, next) => {
 		}
 
 		await order.save();
+
+		// Notify the customer by email when the status actually changes. Awaited
+		// (not deferred) for the same reason as order confirmation emails - this
+		// runs as a Vercel serverless function and can be frozen right after the
+		// response is sent.
+		if (previousStatus !== status) {
+			try {
+				await sendOrderStatusEmail(order, note);
+				console.log('[Update Order Status] Status update email sent');
+			} catch (emailError) {
+				console.error('[Update Order Status] Email sending failed:', emailError);
+				// Don't fail the status update if email fails
+			}
+		}
 
 		res.json({
 			success: true,
